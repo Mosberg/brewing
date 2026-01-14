@@ -14,7 +14,7 @@
   <img src="https://img.shields.io/badge/Contributions-Welcome-brightgreen?style=flat-square" />
 </p>
 
-**Brewing** is a schema‑driven brewing system for Minecraft Fabric that adds alcoholic beverages with methods, equipment, containers, quality tiers, difficulty tiers, and potion-like effects — defined through JSON.
+**Brewing** is a schema‑driven brewing system for Fabric that defines alcoholic beverages, methods, equipment, containers, and their gameplay semantics through JSON (datapack/server data + resourcepack/client assets).
 
 ---
 
@@ -75,6 +75,45 @@ Everything is driven by schema-validated JSON (beverages, ingredients, container
 
 ---
 
+## 🧠 How it works (current implementation)
+
+Brewing is designed to be **data-first**:
+
+- **Server data (datapack)** is loaded from `data/brewing/**` and hot-reloaded via a Fabric resource reload listener.
+- **Items** are dynamically registered by scanning `assets/brewing/items/**/*.json` and registering an `Item` per file path.
+- **Blocks** are dynamically registered from built-in data definitions:
+  - Containers: `data/brewing/containers/*.json` → block ids `brewing:containers/<file_base>`
+  - Equipment: `data/brewing/equipment/*.json` → block ids `brewing:equipment/<file_base>` (with a small compatibility mapping for `brewing_kettle` → `brew_kettle`)
+- **Block entities** are registered once for container blocks and equipment blocks.
+
+### Runtime data reload
+
+On datapack reload, Brewing loads and stores the full dataset:
+
+- Loader: `dk.mosberg.brewing.data.loader.BrewingDataLoader`
+- Reload listener: `dk.mosberg.brewing.data.loader.BrewingDataReloadListener`
+- Runtime access: `dk.mosberg.brewing.data.BrewingDataManager.get()`
+
+In dev, a small smoke check runs on reload to ensure a couple of key JSONs parse.
+
+---
+
+## 🧪 Container state storage (`state_storage`)
+
+Containers can define schema-driven state transfer rules under `state_storage`.
+
+**Current behavior implemented in code:**
+
+- Item payload is stored in `ItemStack` `CUSTOM_DATA` under a mod-root compound: `brewing.payload`.
+- Containers that can be placed store payload in a `ContainerBlockEntity`.
+- `conversion.on_place` / `conversion.on_break` control whether payload is copied item→block and/or block→item.
+- `conversion.merge_strategy` controls whether the incoming payload is applied as-is or merged with schema defaults.
+- If `placed_block.sync_to_client` is enabled, payload updates trigger a server chunk update so clients receive BE changes.
+
+---
+
+---
+
 ## 🍷 Content reference (current set)
 
 <details>
@@ -99,12 +138,12 @@ Everything is driven by schema-validated JSON (beverages, ingredients, container
 <details>
 <summary><strong>Container types</strong></summary>
 
-- Glass Bottles — 500ml
-- Glass Flasks — 250ml
-- Metal Cans — 330ml
-- Metal Kegs — 5L
-- Pressurized Metal Kegs — 5L
-- Wooden Barrels — 20L
+- Glass Bottles — 750 mB
+- Glass Flasks — 250 mB
+- Metal Cans — 330 mB
+- Metal Kegs — 30000 mB
+- Pressurized Metal Kegs — 30000 mB
+- Wooden Barrels — 50000 mB
 
 </details>
 
@@ -181,13 +220,13 @@ Schemas live in:
 data/brewing/schemas/
 ```
 
-- `alcohol_types_schema.json`
-- `beverages_schema.json`
-- `common_schema.json`
-- `containers_schema.json`
-- `equipment_schema.json`
-- `ingredients_schema.json`
-- `methods_schema.json`
+- `alcohol-types-schema.json`
+- `beverages-schema.json`
+- `common-schema.json`
+- `containers-schema.json`
+- `equipment-schema.json`
+- `ingredients-schema.json`
+- `methods-schema.json`
 
 ---
 
@@ -216,6 +255,14 @@ data/brewing/schemas/
 ./gradlew runServer
 ```
 
+### Validate JSON (optional)
+
+There is a small Python validator for the shipped brewing JSON:
+
+```bash
+python tools/validate_brewing_data.py
+```
+
 ---
 
 ## Project Structure
@@ -225,16 +272,14 @@ brewing/
 ├─ src/
 │  ├─ main/
 │  │  ├─ java/dk/mosberg/brewing/
-│  │  │  ├─ Brewing.java                     # Main mod initializer (common)
-│  │  │  ├─ api/                             # Public API (stable contracts)
-│  │  │  ├─ impl/                            # Internal implementations (non-API)
-│  │  │  ├─ registry/                        # Registration + registry helpers
-│  │  │  ├─ data/                            # Runtime data models (POJOs, codecs)
-│  │  │  ├─ data/loader/                     # JSON discovery/validation/loading
-│  │  │  ├─ brewing/                         # Brewing domain logic (pipeline, rules)
-│  │  │  ├─ network/                         # Shared networking (packets, channels)
-│  │  │  ├─ util/                            # Utilities (small, dependency-light)
-│  │  │  └─ datagen/                         # Datagen entry + shared providers
+│  │  │  ├─ Brewing.java                     # Main mod initializer
+│  │  │  ├─ block/                           # Runtime blocks (container/equipment)
+│  │  │  ├─ block/entity/                    # Block entities
+│  │  │  ├─ data/                            # Runtime data records
+│  │  │  ├─ data/loader/                     # JSON loading + reload listener
+│  │  │  ├─ datagen/                         # Datagen entrypoint (stub)
+│  │  │  ├─ registry/                        # Dynamic registration
+│  │  │  └─ state/                           # Container payload + item/BE state storage
 │  │  └─ resources/
 │  │     ├─ fabric.mod.json                  # Mod metadata
 │  │     ├─ icon.png                         # Mod icon
