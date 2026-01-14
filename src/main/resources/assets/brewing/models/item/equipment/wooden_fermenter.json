@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "brewing:item/equipment/oak_fermenter"
+    "layer0": "brewing:item/equipment/wooden_fermenter"
   }
 }

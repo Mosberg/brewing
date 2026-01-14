@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "brewing:item/beverages/brandy/brandy"
+    "layer0": "brewing:item/beverages/brandy/basic_brandy"
   }
 }
