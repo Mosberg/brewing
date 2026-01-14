@@ -20,6 +20,7 @@ import net.minecraft.util.Identifier;
 public final class BrewingDataLoader {
     private BrewingDataLoader() {}
 
+    @SuppressWarnings("null")
     public static BrewingData loadAll(ResourceManager resourceManager) {
         Map<String, AlcoholTypeDefinition> alcoholTypes =
                 loadFolder(resourceManager, "alcohol_types", AlcoholTypeDefinition.class);
