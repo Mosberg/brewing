@@ -1,16 +1,16 @@
 {
   "type": "brewing:equipment",
   "schema_version": 1,
-  "id": "brewing:carbonation_rig",
-  "name_key": "block.brewing.carbonation_rig",
+  "id": "brewing:equipment/carbonation_rig",
+  "name_key": "block.brewing.equipment.carbonation_rig",
   "rarity": "common",
   "material": "metal",
   "function": "conditioning",
   "category": "equipment",
   "placement": {
     "kind": "block",
-    "block_id": "brewing:carbonation_rig",
-    "block_entity_id": "brewing:carbonation_rig",
+    "block_id": "brewing:equipment/carbonation_rig",
+    "block_entity_id": "brewing:equipment/carbonation_rig",
     "facing": "horizontal",
     "requires_solid_support": true
   },
@@ -26,11 +26,7 @@
     },
     "quick_move": {
       "enabled": true,
-      "priority": [
-        "input",
-        "catalyst",
-        "output"
-      ]
+      "priority": ["input", "catalyst", "output"]
     }
   },
   "aging": {

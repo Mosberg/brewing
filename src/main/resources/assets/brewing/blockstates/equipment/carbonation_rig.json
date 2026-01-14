@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "brewing:block/equipment/carbonation_rig"
+    }
+  }
+}

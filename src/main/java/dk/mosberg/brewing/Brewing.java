@@ -3,6 +3,9 @@ package dk.mosberg.brewing;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import dk.mosberg.brewing.data.loader.BrewingDataReloadListener;
+import dk.mosberg.brewing.registry.ModBlockEntities;
+import dk.mosberg.brewing.registry.ModBlocks;
+import dk.mosberg.brewing.registry.ModItems;
 import net.fabricmc.api.ModInitializer;
 
 public class Brewing implements ModInitializer {
@@ -19,6 +22,9 @@ public class Brewing implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
+		ModBlocks.init();
+		ModBlockEntities.init();
+		ModItems.init();
 		BrewingDataReloadListener.register();
 		LOGGER.info("Brewing initialized");
 	}

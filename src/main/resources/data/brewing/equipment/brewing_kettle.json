@@ -1,16 +1,16 @@
 {
   "type": "brewing:equipment",
   "schema_version": 1,
-  "id": "brewing:brewing_kettle",
-  "name_key": "block.brewing.brewing_kettle",
+  "id": "brewing:equipment/brew_kettle",
+  "name_key": "block.brewing.equipment.brew_kettle",
   "rarity": "common",
   "material": "metal",
   "function": "mashing",
   "category": "equipment",
   "placement": {
     "kind": "block",
-    "block_id": "brewing:brewing_kettle",
-    "block_entity_id": "brewing:brewing_kettle",
+    "block_id": "brewing:equipment/brew_kettle",
+    "block_entity_id": "brewing:equipment/brew_kettle",
     "facing": "horizontal",
     "requires_solid_support": true
   },
@@ -26,11 +26,7 @@
     },
     "quick_move": {
       "enabled": true,
-      "priority": [
-        "input",
-        "catalyst",
-        "output"
-      ]
+      "priority": ["input", "catalyst", "output"]
     }
   },
   "aging": {
@@ -56,8 +52,8 @@
     "requires_gamerule_true": "brewingEnabled"
   },
   "text": {
-    "name_key": "brewing.equipment.brewing_kettle.name",
-    "tooltip_key": "brewing.equipment.brewing_kettle.tooltip"
+    "name_key": "brewing.equipment.brew_kettle.name",
+    "tooltip_key": "brewing.equipment.brew_kettle.tooltip"
   },
   "meta": {
     "display_name": "Brewing Kettle"

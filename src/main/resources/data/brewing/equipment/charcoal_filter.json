@@ -1,16 +1,16 @@
 {
   "type": "brewing:equipment",
   "schema_version": 1,
-  "id": "brewing:charcoal_filter",
-  "name_key": "block.brewing.charcoal_filter",
+  "id": "brewing:equipment/charcoal_filter",
+  "name_key": "block.brewing.equipment.charcoal_filter",
   "rarity": "common",
   "material": "metal",
   "function": "filtration",
   "category": "equipment",
   "placement": {
     "kind": "block",
-    "block_id": "brewing:charcoal_filter",
-    "block_entity_id": "brewing:charcoal_filter",
+    "block_id": "brewing:equipment/charcoal_filter",
+    "block_entity_id": "brewing:equipment/charcoal_filter",
     "facing": "horizontal",
     "requires_solid_support": true
   },
@@ -26,11 +26,7 @@
     },
     "quick_move": {
       "enabled": true,
-      "priority": [
-        "input",
-        "catalyst",
-        "output"
-      ]
+      "priority": ["input", "catalyst", "output"]
     }
   },
   "aging": {

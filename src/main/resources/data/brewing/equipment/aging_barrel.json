@@ -1,11 +1,11 @@
 {
   "type": "brewing:equipment",
   "schema_version": 2,
-  "id": "brewing:aging_barrel",
-  "name_key": "block.brewing.aging_barrel",
+  "id": "brewing:equipment/aging_barrel",
+  "name_key": "block.brewing.equipment.aging_barrel",
   "text": {
-    "name_key": "block.brewing.aging_barrel",
-    "tooltip_key": "block.brewing.aging_barrel.tooltip"
+    "name_key": "block.brewing.equipment.aging_barrel",
+    "tooltip_key": "block.brewing.equipment.aging_barrel.tooltip"
   },
   "rarity": "uncommon",
   "material": "wood",
@@ -18,8 +18,8 @@
   },
   "placement": {
     "kind": "block",
-    "block_id": "brewing:aging_barrel",
-    "block_entity_id": "brewing:aging_barrel",
+    "block_id": "brewing:equipment/aging_barrel",
+    "block_entity_id": "brewing:equipment/aging_barrel",
     "facing": "horizontal",
     "requires_solid_support": true
   },

@@ -1,11 +1,11 @@
 {
   "type": "brewing:equipment",
   "schema_version": 1,
-  "id": "brewing:metal_distillery",
-  "name_key": "block.brewing.metal_distillery",
+  "id": "brewing:equipment/metal_distillery",
+  "name_key": "block.brewing.equipment.metal_distillery",
   "text": {
-    "name_key": "block.brewing.metal_distillery",
-    "tooltip_key": "block.brewing.metal_distillery.tooltip"
+    "name_key": "block.brewing.equipment.metal_distillery",
+    "tooltip_key": "block.brewing.equipment.metal_distillery.tooltip"
   },
   "rarity": "rare",
   "material": "metal",
@@ -13,8 +13,8 @@
   "category": "equipment",
   "placement": {
     "kind": "block",
-    "block_id": "brewing:metal_distillery",
-    "block_entity_id": "brewing:metal_distillery",
+    "block_id": "brewing:equipment/metal_distillery",
+    "block_entity_id": "brewing:equipment/metal_distillery",
     "facing": "horizontal",
     "requires_solid_support": true
   },

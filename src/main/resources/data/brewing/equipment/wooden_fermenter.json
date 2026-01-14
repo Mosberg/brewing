@@ -1,11 +1,11 @@
 {
   "type": "brewing:equipment",
   "schema_version": 1,
-  "id": "brewing:wooden_fermenter",
-  "name_key": "block.brewing.wooden_fermenter",
+  "id": "brewing:equipment/wooden_fermenter",
+  "name_key": "block.brewing.equipment.wooden_fermenter",
   "text": {
-    "name_key": "block.brewing.wooden_fermenter",
-    "tooltip_key": "block.brewing.wooden_fermenter.tooltip"
+    "name_key": "block.brewing.equipment.wooden_fermenter",
+    "tooltip_key": "block.brewing.equipment.wooden_fermenter.tooltip"
   },
   "rarity": "uncommon",
   "material": "wood",
@@ -13,8 +13,8 @@
   "category": "equipment",
   "placement": {
     "kind": "block",
-    "block_id": "brewing:wooden_fermenter",
-    "block_entity_id": "brewing:wooden_fermenter",
+    "block_id": "brewing:equipment/wooden_fermenter",
+    "block_entity_id": "brewing:equipment/wooden_fermenter",
     "facing": "horizontal",
     "requires_solid_support": true
   },
