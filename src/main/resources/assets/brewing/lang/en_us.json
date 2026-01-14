@@ -1,1 +1,33 @@
-{}
+{
+  "itemGroup.brewing": "Brewing",
+
+  "item.brewing.containers.glass_bottle": "Glass Bottle",
+  "item.brewing.containers.glass_flask": "Glass Flask",
+  "item.brewing.containers.metal_can": "Metal Can",
+  "item.brewing.containers.metal_keg": "Metal Keg",
+  "item.brewing.containers.pressurized_metal_keg": "Pressurized Metal Keg",
+  "item.brewing.containers.wooden_barrel": "Wooden Barrel",
+
+  "block.brewing.containers.glass_bottle": "Glass Bottle",
+  "block.brewing.containers.glass_flask": "Glass Flask",
+  "block.brewing.containers.metal_can": "Metal Can",
+  "block.brewing.containers.metal_keg": "Metal Keg",
+  "block.brewing.containers.pressurized_metal_keg": "Pressurized Metal Keg",
+  "block.brewing.containers.wooden_barrel": "Wooden Barrel",
+
+  "item.brewing.equipment.aging_barrel": "Aging Barrel",
+  "item.brewing.equipment.botanical_basket": "Botanical Basket",
+  "item.brewing.equipment.brew_kettle": "Brew Kettle",
+  "item.brewing.equipment.carbonation_rig": "Carbonation Rig",
+  "item.brewing.equipment.charcoal_filter": "Charcoal Filter",
+  "item.brewing.equipment.metal_distillery": "Metal Distillery",
+  "item.brewing.equipment.wooden_distillery": "Wooden Distillery",
+
+  "block.brewing.equipment.aging_barrel": "Aging Barrel",
+  "block.brewing.equipment.botanical_basket": "Botanical Basket",
+  "block.brewing.equipment.brew_kettle": "Brew Kettle",
+  "block.brewing.equipment.carbonation_rig": "Carbonation Rig",
+  "block.brewing.equipment.charcoal_filter": "Charcoal Filter",
+  "block.brewing.equipment.metal_distillery": "Metal Distillery",
+  "block.brewing.equipment.wooden_distillery": "Wooden Distillery"
+}

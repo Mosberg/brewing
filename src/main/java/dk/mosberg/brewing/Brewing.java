@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import dk.mosberg.brewing.data.loader.BrewingDataReloadListener;
 import dk.mosberg.brewing.registry.ModBlockEntities;
 import dk.mosberg.brewing.registry.ModBlocks;
+import dk.mosberg.brewing.registry.ModItemGroups;
 import dk.mosberg.brewing.registry.ModItems;
 import net.fabricmc.api.ModInitializer;
 
@@ -25,6 +26,7 @@ public class Brewing implements ModInitializer {
 		ModBlocks.init();
 		ModBlockEntities.init();
 		ModItems.init();
+		ModItemGroups.init();
 		BrewingDataReloadListener.register();
 		LOGGER.info("Brewing initialized");
 	}
