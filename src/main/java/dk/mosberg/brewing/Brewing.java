@@ -2,6 +2,7 @@ package dk.mosberg.brewing;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import dk.mosberg.brewing.data.loader.BrewingDataReloadListener;
 import net.fabricmc.api.ModInitializer;
 
 public class Brewing implements ModInitializer {
@@ -18,6 +19,7 @@ public class Brewing implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		LOGGER.info("Hello Fabric world!");
+		BrewingDataReloadListener.register();
+		LOGGER.info("Brewing initialized");
 	}
 }
