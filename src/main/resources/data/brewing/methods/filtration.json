@@ -1,0 +1,8 @@
+{
+  "id": "brewing:filtration",
+  "name_key": "brewing.method.filtration.name",
+  "tooltip_key": "brewing.method.filtration.tooltip",
+  "roles": [
+    "brewing:filter"
+  ]
+}

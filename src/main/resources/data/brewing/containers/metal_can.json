@@ -1,0 +1,125 @@
+{
+  "type": "brewing:container",
+  "id": "brewing:metal_can",
+  "container_kind": "can",
+  "stack_size": 64,
+  "rarity": "common",
+  "category": "containers",
+  "durability": {
+    "breakable": false,
+    "max_damage": 0,
+    "fireproof": false,
+    "explosion_resistance": "low"
+  },
+  "material": {
+    "metal": {
+      "metal_type": "metal",
+      "supports_metal_variants": true,
+      "allowed_metal_types": ["copper", "iron", "gold", "netherite"],
+      "flavor_bias": "vanilla"
+    }
+  },
+  "liquid": {
+    "can_contain_liquid": true,
+    "capacity_mb": 330,
+    "accepted_tags": ["brewing:beverages", "brewing:beer", "brewing:cider"],
+    "default_fill_mb": 250,
+    "transfer": {
+      "fill_rate_mb_per_tick": 20,
+      "pour_rate_mb_per_tick": 20,
+      "allow_partial": true
+    }
+  },
+  "seal": {
+    "starts_sealed": true,
+    "reopenable": false,
+    "seal_quality": "airtight",
+    "leak_chance_per_minute_open": 0.0,
+    "oxidation_multiplier_open": 3.0,
+    "spoilage_multiplier_open": 2.0
+  },
+  "pressure": {
+    "supports_pressure": true,
+    "carbonation_style": "medium",
+    "max_pressure": 1.0,
+    "burst": {
+      "enabled": true,
+      "pressure_threshold": 0.95,
+      "drop_contents_on_burst": true,
+      "burst_sound": "minecraft:entity.item.break"
+    }
+  },
+  "temperature": {
+    "insulation_factor": 0.25,
+    "preferred_serving": "cold",
+    "freezing_safe": true,
+    "heat_safe": false
+  },
+  "logic": {},
+  "interaction": {
+    "use_action": "drink",
+    "returns_container": true,
+    "return_item_id": "brewing:metal_can",
+    "consume_on_drink": false,
+    "allow_fill_from": ["brewing:metal_keg", "brewing:fermenting_barrel"],
+    "allow_pour_to": ["brewing:metal_keg", "brewing:fermenting_barrel"],
+    "consume_on_use": false
+  },
+  "client": {
+    "render_mode": "item_with_liquid_tint",
+    "liquid_tint_from_content": true,
+    "show_fill_level_tooltip": true,
+    "fill_level_steps": 5
+  },
+  "gates": {
+    "requires_feature_flag": "brewing:liquids",
+    "requires_gamerule_true": "enableAlcoholEffects"
+  },
+  "text": {
+    "lore_key": "item.brewing.metal_can.desc",
+    "tooltip_key": "item.brewing.metal_can.tooltip",
+    "flavor_text_key": "item.brewing.metal_can.flavor_text",
+    "crafting_instructions_key": "item.brewing.metal_can.crafting_instructions"
+  },
+  "state_storage": {
+    "mode": "both",
+    "schema_version": 1,
+    "defaults": {
+      "payload": {
+        "content_id": "",
+        "amount_mb": 0,
+        "quality": 0.0,
+        "temperature": "ambient",
+        "pressure": 0.0,
+        "sealed": true,
+        "created_time": 0
+      }
+    },
+    "item_nbt": {
+      "enabled": true,
+      "nbt_root": "AlchemyContainer",
+      "payload_key": "payload",
+      "fields": {
+        "content_id": "content_id",
+        "amount_mb": "amount_mb",
+        "quality": "quality",
+        "temperature": "temperature",
+        "pressure": "pressure",
+        "sealed": "sealed",
+        "created_time": "created_time"
+      }
+    },
+    "placed_block": {
+      "enabled": true,
+      "block_id": "brewing:placed_metal_can",
+      "block_entity_id": "brewing:placed_container",
+      "sync_to_client": true,
+      "drops_keep_contents": true
+    },
+    "conversion": {
+      "on_place": "copy_item_nbt_to_block_entity",
+      "on_break": "copy_block_entity_to_item_nbt",
+      "merge_strategy": "replace"
+    }
+  }
+}

@@ -1,0 +1,247 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mosberg.github.io/schemas/brewing/methods-schema.json",
+  "title": "Brewing Method Definition",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name_key",
+    "tooltip_key",
+    "roles"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "common-schema.json#/$defs/Identifier"
+    },
+    "name_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tooltip_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "roles": {
+      "type": "array",
+      "items": {
+        "$ref": "common-schema.json#/$defs/Identifier"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "display_name": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "ui": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "color": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 16777215
+        },
+        "sort_order": {
+          "type": "integer"
+        },
+        "show_in_jei": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "compat": {
+      "type": "object",
+      "description": "Optional compatibility rules between method, equipment, and containers.",
+      "additionalProperties": false,
+      "properties": {
+        "allowed_equipment_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "common-schema.json#/$defs/Identifier"
+          },
+          "uniqueItems": true
+        },
+        "denied_equipment_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "common-schema.json#/$defs/Identifier"
+          },
+          "uniqueItems": true
+        },
+        "allowed_container_kinds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "requires_feature_flag": {
+          "type": "string"
+        },
+        "requires_gamerule_true": {
+          "type": "string"
+        }
+      }
+    },
+    "processing": {
+      "type": "object",
+      "description": "Optional default processing model for this method; equipment may override.",
+      "additionalProperties": false,
+      "properties": {
+        "base_time_ticks": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "time_variance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "batch_size": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "success_chance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "consumes_catalyst": {
+          "type": "boolean"
+        },
+        "requires_heat": {
+          "type": "boolean"
+        },
+        "requires_cooling": {
+          "type": "boolean"
+        },
+        "optimal_temperature": {
+          "type": "number"
+        },
+        "temperature_tolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "optimal_pressure_range": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "base": {
+          "type": "number"
+        },
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "variance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "affects_yield": {
+          "type": "boolean"
+        },
+        "affects_effects": {
+          "type": "boolean"
+        }
+      }
+    },
+    "effects": {
+      "type": "object",
+      "description": "Optional status/effect hooks for method completion or failure.",
+      "additionalProperties": false,
+      "properties": {
+        "on_success": {
+          "$ref": "common-schema.json#/$defs/EventList"
+        },
+        "on_fail": {
+          "$ref": "common-schema.json#/$defs/EventList"
+        },
+        "on_tick": {
+          "$ref": "common-schema.json#/$defs/EventList"
+        }
+      }
+    },
+    "config": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "time_multiplier": {
+          "type": "number",
+          "minimum": 0,
+          "default": 1.0
+        },
+        "quality_multiplier": {
+          "type": "number",
+          "minimum": 0,
+          "default": 1.0
+        },
+        "yield_multiplier": {
+          "type": "number",
+          "minimum": 0,
+          "default": 1.0
+        },
+        "debug_logging": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    }
+  },
+  "$defs": {},
+  "patternProperties": {
+    "^x-": {
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "integer",
+        "boolean",
+        "null"
+      ]
+    },
+    "^_debug$": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

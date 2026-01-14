@@ -1,0 +1,163 @@
+{
+  "type": "brewing:equipment",
+  "schema_version": 2,
+  "id": "brewing:aging_barrel",
+  "name_key": "block.brewing.aging_barrel",
+  "text": {
+    "name_key": "block.brewing.aging_barrel",
+    "tooltip_key": "block.brewing.aging_barrel.tooltip"
+  },
+  "rarity": "uncommon",
+  "material": "wood",
+  "function": "aging",
+  "category": "equipment",
+  "meta": {
+    "display_name": "Aging Barrel",
+    "icon": "brewing:aging_barrel_icon",
+    "notes": "Advanced barrel for aging beverages with controlled environmental effects."
+  },
+  "placement": {
+    "kind": "block",
+    "block_id": "brewing:aging_barrel",
+    "block_entity_id": "brewing:aging_barrel",
+    "facing": "horizontal",
+    "requires_solid_support": true
+  },
+  "inventory": {
+    "capacity": 9,
+    "stack_limit_per_slot": 1,
+    "accepts_item_tags": ["brewing:ageable", "brewing:beverages"],
+    "rejects_item_tags": ["brewing:non_ageable"],
+    "slot_roles": {
+      "0-8": "aging_input"
+    },
+    "quick_move": {
+      "enabled": true,
+      "priority": ["aging_input"]
+    }
+  },
+  "aging": {
+    "recipe_source": "datapack",
+    "recipe_type": "brewing:aging_recipe",
+    "aging_multiplier": 1.0,
+    "progress_persists": true,
+    "quality": {
+      "enabled": true,
+      "base_quality_on_insert": 0.5,
+      "max_quality": 1.0,
+      "min_quality": 0.0,
+      "quality_bonus_on_complete": 0.05
+    },
+    "spoilage": {
+      "enabled": true,
+      "base_risk_per_day": 0.02,
+      "opened_multiplier": 1.25,
+      "contamination_tags": ["brewing:dirty", "brewing:rotten"],
+      "spoiled_output_id": "brewing:spoiled_beer"
+    },
+    "environment_modifiers": {
+      "heat_speedup": {
+        "enabled": true,
+        "speed_multiplier": 2.0,
+        "spoilage_risk_multiplier": 1.25,
+        "heat_sources": [
+          "minecraft:campfire",
+          "minecraft:soul_campfire",
+          "minecraft:lava"
+        ],
+        "heat_block_tags": ["minecraft:fire"]
+      },
+      "cold_cellar": {
+        "enabled": true,
+        "speed_multiplier": 0.5,
+        "quality_bonus": 0.02,
+        "contamination_risk_multiplier": 0.85,
+        "biome_temperature_threshold": 0.4,
+        "max_light_level": 3
+      },
+      "structure_bonus": {
+        "enabled": true,
+        "required_structure_tags": ["brewing:aging_rooms"],
+        "quality_bonus": 0.01
+      }
+    }
+  },
+  "wood_variants": {
+    "enabled": true,
+    "default_wood": "oak",
+    "allowed_woods": ["oak", "spruce", "warped"],
+    "flavor_bias": {
+      "oak": "vanilla",
+      "spruce": "resin",
+      "warped": "arcane"
+    }
+  },
+  "interaction": {
+    "open_gui_on_use": true,
+    "sound_on_open": "minecraft:block.barrel.open",
+    "sound_on_close": "minecraft:block.barrel.close",
+    "requires_sneak_to_extract": false,
+    "lockable": {
+      "enabled": true,
+      "lock_item_tag": "brewing:barrel_keys",
+      "owner_only_by_default": false
+    }
+  },
+  "automation": {
+    "hopper_insert": true,
+    "hopper_extract": true,
+    "sided_rules": {
+      "top": {
+        "insert": true,
+        "extract": false
+      },
+      "sides": {
+        "insert": true,
+        "extract": true
+      },
+      "bottom": {
+        "insert": false,
+        "extract": true
+      }
+    }
+  },
+  "upgrades": {
+    "enabled": true,
+    "slots": 2,
+    "allowed_upgrade_tags": ["brewing:equipment_upgrades"],
+    "effects": {
+      "leakproof_lining": {
+        "spoilage_risk_multiplier": 0.8
+      },
+      "insulation_wrap": {
+        "cold_cellar_speed_multiplier": 0.8,
+        "heat_speedup_multiplier": 0.85
+      },
+      "precision_spigot": {
+        "quality_bonus_on_complete": 0.07
+      }
+    }
+  },
+  "client": {
+    "screen_id": "brewing:aging_barrel",
+    "show_progress": true,
+    "show_quality": true,
+    "show_environment_state": true,
+    "block_entity_renderer": "brewing:aging_barrel_renderer"
+  },
+  "gates": {
+    "requires_feature_flag": "brewing:aging",
+    "requires_gamerule_true": "enableAlcoholEffects"
+  },
+  "crafting": {
+    "recipe_hint": {
+      "type": "minecraft:crafting_shaped",
+      "ingredients_preview": [
+        {
+          "item": "minecraft:oak_planks",
+          "count": 8
+        }
+      ]
+    }
+  }
+}

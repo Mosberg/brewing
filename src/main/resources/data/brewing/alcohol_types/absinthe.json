@@ -1,0 +1,9 @@
+{
+  "id": "absinthe",
+  "display_name": "Absinthe",
+  "abv_range_pct": [
+    45,
+    75
+  ],
+  "base_method": "maceration_distillation"
+}

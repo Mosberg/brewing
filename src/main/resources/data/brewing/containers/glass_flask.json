@@ -1,0 +1,157 @@
+{
+  "type": "brewing:container",
+  "id": "brewing:glass_flask",
+  "container_kind": "flask",
+  "stack_size": 16,
+  "rarity": "common",
+  "category": "containers",
+  "durability": {
+    "breakable": true,
+    "max_damage": 0,
+    "fireproof": false,
+    "explosion_resistance": "low"
+  },
+  "material": {
+    "glass": {
+      "glass_type": "glass",
+      "supports_glass_variants": true,
+      "allowed_glass_types": [
+        "glass",
+        "white_stained_glass",
+        "orange_stained_glass",
+        "magenta_stained_glass",
+        "light_blue_stained_glass",
+        "yellow_stained_glass",
+        "lime_stained_glass",
+        "pink_stained_glass",
+        "gray_stained_glass",
+        "light_gray_stained_glass",
+        "cyan_stained_glass",
+        "purple_stained_glass",
+        "blue_stained_glass",
+        "brown_stained_glass",
+        "green_stained_glass",
+        "red_stained_glass",
+        "black_stained_glass"
+      ],
+      "flavor_bias": "vanilla"
+    }
+  },
+  "liquid": {
+    "can_contain_liquid": true,
+    "capacity_mb": 250,
+    "accepted_tags": [
+      "brewing:beverages",
+      "brewing:spirit",
+      "brewing:liqueur",
+      "brewing:potion_spirit"
+    ],
+    "default_fill_mb": 250,
+    "transfer": {
+      "fill_rate_mb_per_tick": 25,
+      "pour_rate_mb_per_tick": 25,
+      "allow_partial": true
+    }
+  },
+  "seal": {
+    "starts_sealed": false,
+    "reopenable": true,
+    "seal_quality": "stoppered",
+    "leak_chance_per_minute_open": 0.001,
+    "oxidation_multiplier_open": 1.75,
+    "spoilage_multiplier_open": 1.25
+  },
+  "pressure": {
+    "supports_pressure": false,
+    "carbonation_style": "none",
+    "max_pressure": 0.0,
+    "burst": {
+      "enabled": false,
+      "pressure_threshold": 0.0,
+      "drop_contents_on_burst": true,
+      "burst_sound": "minecraft:entity.item.break"
+    }
+  },
+  "temperature": {
+    "insulation_factor": 0.3,
+    "preferred_serving": "cool",
+    "freezing_safe": true,
+    "heat_safe": false
+  },
+  "logic": {},
+  "interaction": {
+    "use_action": "drink",
+    "returns_container": true,
+    "return_item_id": "brewing:glass_flask",
+    "consume_on_drink": false,
+    "allow_fill_from": [
+      "brewing:aluminum_keg",
+      "brewing:distillation_apparatus"
+    ],
+    "allow_pour_to": ["brewing:aluminum_keg", "brewing:wooden_barrel"],
+    "consume_on_use": false
+  },
+  "client": {
+    "render_mode": "item_with_liquid_tint",
+    "liquid_tint_from_content": true,
+    "show_fill_level_tooltip": true,
+    "fill_level_steps": 5
+  },
+  "gates": {
+    "requires_feature_flag": "brewing:liquids",
+    "requires_gamerule_true": "enableAlcoholEffects"
+  },
+  "text": {
+    "lore_key": "item.brewing.glass_flask.desc",
+    "tooltip_key": "item.brewing.glass_flask.tooltip",
+    "flavor_text_key": "item.brewing.glass_flask.flavor_text",
+    "crafting_instructions_key": "item.brewing.glass_flask.crafting_instructions"
+  },
+  "state_storage": {
+    "mode": "both",
+    "schema_version": 1,
+    "defaults": {
+      "payload": {
+        "content_id": "",
+        "amount_mb": 0,
+        "quality": 0.0,
+        "temperature": "ambient",
+        "pressure": 0.0,
+        "sealed": false,
+        "created_time": 0
+      }
+    },
+    "item_nbt": {
+      "enabled": true,
+      "nbt_root": "AlchemyContainer",
+      "payload_key": "payload",
+      "fields": {
+        "content_id": "content_id",
+        "amount_mb": "amount_mb",
+        "quality": "quality",
+        "temperature": "temperature",
+        "pressure": "pressure",
+        "sealed": "sealed",
+        "created_time": "created_time"
+      }
+    },
+    "placed_block": {
+      "enabled": true,
+      "block_id": "brewing:placed_glass_flask",
+      "block_entity_id": "brewing:placed_container",
+      "sync_to_client": true,
+      "drops_keep_contents": true
+    },
+    "conversion": {
+      "on_place": "copy_item_nbt_to_block_entity",
+      "on_break": "copy_block_entity_to_item_nbt",
+      "merge_strategy": "replace"
+    }
+  },
+  "config": {
+    "enabled": true,
+    "capacity_multiplier": 1.0,
+    "transfer_rate_multiplier": 1.0,
+    "disable_pressure_burst": false
+  }
+}

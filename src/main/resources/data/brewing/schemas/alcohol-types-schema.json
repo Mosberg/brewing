@@ -1,0 +1,271 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mosberg.github.io/schemas/brewing/alcohol-types-schema.json",
+  "title": "Brewing Alcohol Type Definition",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "display_name",
+    "abv_range_pct",
+    "base_method"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_./-]+$",
+      "description": "Alcohol type id used as a content/category key (e.g., 'beer')."
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "abv_range_pct": {
+      "type": "array",
+      "description": "[min, max] ABV percentage range.",
+      "items": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "base_method": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Recipe/process family (currently strings like 'fermentation', 'distillation', 'maceration_distillation', 'distillation_filtration')."
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "notes": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "icon": {
+          "type": "string"
+        }
+      }
+    },
+    "style": {
+      "type": "object",
+      "description": "Optional taste/appearance metadata (useful for UI, progression, and generation).",
+      "additionalProperties": false,
+      "properties": {
+        "color": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 16777215
+        },
+        "clarity": {
+          "enum": [
+            "clear",
+            "hazy",
+            "opaque"
+          ]
+        },
+        "carbonation": {
+          "enum": [
+            "still",
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "sweetness": {
+          "enum": [
+            "dry",
+            "semi_dry",
+            "semi_sweet",
+            "sweet"
+          ]
+        },
+        "body": {
+          "enum": [
+            "light",
+            "medium",
+            "full"
+          ]
+        },
+        "bitterness": {
+          "type": "number",
+          "minimum": 0
+        },
+        "aroma_notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "processing": {
+      "type": "object",
+      "description": "Optional defaults that recipes can inherit (method chain, targets, aging suggestions).",
+      "additionalProperties": false,
+      "properties": {
+        "default_method_chain": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "target_abv_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "aging": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "recommended": {
+              "type": "boolean"
+            },
+            "min_days": {
+              "type": "number",
+              "minimum": 0
+            },
+            "max_days": {
+              "type": "number",
+              "minimum": 0
+            },
+            "wood_influence": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "effects": {
+      "type": "object",
+      "description": "Optional gameplay effects contributed by drinking this alcohol type.",
+      "additionalProperties": false,
+      "properties": {
+        "intoxication": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "base_strength": {
+              "type": "number",
+              "minimum": 0
+            },
+            "strength_per_abv": {
+              "type": "number",
+              "minimum": 0
+            },
+            "nausea_threshold": {
+              "type": "number",
+              "minimum": 0
+            },
+            "blackout_threshold": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        },
+        "status_effects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/StatusEffect"
+          }
+        }
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "requires_feature_flag": {
+          "type": "string"
+        },
+        "requires_gamerule_true": {
+          "type": "string"
+        },
+        "min_player_level": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "config": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "abv_multiplier": {
+          "type": "number",
+          "minimum": 0,
+          "default": 1.0
+        },
+        "effect_strength_multiplier": {
+          "type": "number",
+          "minimum": 0,
+          "default": 1.0
+        },
+        "debug_logging": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    }
+  },
+  "$defs": {
+    "StatusEffect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "common-schema.json#/$defs/Identifier"
+        },
+        "duration_ticks": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "amplifier": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "chance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    }
+  },
+  "patternProperties": {
+    "^x-": {
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "integer",
+        "boolean",
+        "null"
+      ]
+    },
+    "^_debug$": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

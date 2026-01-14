@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "brewing:item/equipment/brew_kettle"
+  }
+}

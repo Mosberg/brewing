@@ -1,0 +1,136 @@
+{
+  "type": "brewing:container",
+  "id": "brewing:glass_bottle",
+  "container_kind": "bottle",
+  "stack_size": 16,
+  "rarity": "common",
+  "category": "containers",
+  "durability": {
+    "breakable": true,
+    "max_damage": 0,
+    "fireproof": false,
+    "explosion_resistance": "low"
+  },
+  "material": {
+    "glass": {
+      "glass_type": "glass",
+      "supports_glass_variants": true,
+      "allowed_glass_types": [
+        "glass",
+        "white_stained_glass",
+        "orange_stained_glass",
+        "magenta_stained_glass",
+        "light_blue_stained_glass",
+        "yellow_stained_glass",
+        "lime_stained_glass",
+        "pink_stained_glass",
+        "gray_stained_glass",
+        "light_gray_stained_glass",
+        "cyan_stained_glass",
+        "purple_stained_glass",
+        "blue_stained_glass",
+        "brown_stained_glass",
+        "green_stained_glass",
+        "red_stained_glass",
+        "black_stained_glass"
+      ],
+      "flavor_bias": "vanilla"
+    }
+  },
+  "liquid": {
+    "can_contain_liquid": true,
+    "capacity_mb": 750,
+    "accepted_tags": ["brewing:all_beverages"],
+    "default_fill_mb": 0,
+    "transfer": {
+      "fill_rate_mb_per_tick": 50,
+      "pour_rate_mb_per_tick": 50,
+      "allow_partial": true
+    }
+  },
+  "seal": {
+    "starts_sealed": true,
+    "reopenable": true,
+    "seal_quality": "standard",
+    "leak_chance_per_minute_open": 0.0,
+    "oxidation_multiplier_open": 1.0,
+    "spoilage_multiplier_open": 1.0
+  },
+  "pressure": {
+    "supports_pressure": false,
+    "carbonation_style": "none",
+    "max_pressure": 0.0,
+    "burst": {
+      "enabled": false,
+      "pressure_threshold": 0.0,
+      "drop_contents_on_burst": false,
+      "burst_sound": "minecraft:block.glass.break"
+    }
+  },
+  "temperature": {
+    "insulation_factor": 1,
+    "preferred_serving": "ambient",
+    "freezing_safe": false,
+    "heat_safe": false
+  },
+  "logic": {},
+  "interaction": {
+    "use_action": "drink",
+    "returns_container": true,
+    "return_item_id": "brewing:glass_bottle",
+    "consume_on_use": false,
+    "consume_on_drink": true
+  },
+  "client": {
+    "render_mode": "default",
+    "liquid_tint_from_content": true,
+    "show_fill_level_tooltip": true,
+    "fill_level_steps": 5
+  },
+  "gates": {
+    "requires_feature_flag": "brewing:enabled",
+    "requires_gamerule_true": "brewingEnabled"
+  },
+  "text": {
+    "lore_key": "brewing.container.glass_bottle.lore",
+    "tooltip_key": "brewing.container.glass_bottle.tooltip",
+    "flavor_text_key": "brewing.container.glass_bottle.flavor",
+    "crafting_instructions_key": "brewing.container.glass_bottle.instructions"
+  },
+  "state_storage": {
+    "mode": "item",
+    "schema_version": 1,
+    "defaults": {
+      "payload": {
+        "content_id": "",
+        "amount_mb": 0,
+        "quality": 0.0,
+        "temperature": "ambient",
+        "pressure": 0.0,
+        "sealed": true,
+        "created_time": 0
+      }
+    },
+    "item_nbt": {
+      "enabled": true,
+      "nbt_root": "tag",
+      "payload_key": "Beverage",
+      "fields": {}
+    },
+    "placed_block": {
+      "enabled": false,
+      "block_id": "minecraft:air",
+      "block_entity_id": "minecraft:air",
+      "sync_to_client": false,
+      "drops_keep_contents": false
+    },
+    "conversion": {
+      "on_place": "replace",
+      "on_break": "replace",
+      "merge_strategy": "replace"
+    }
+  },
+  "meta": {
+    "display_name": "Glass Bottle"
+  }
+}

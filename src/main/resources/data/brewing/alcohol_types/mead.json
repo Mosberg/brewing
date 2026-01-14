@@ -1,0 +1,9 @@
+{
+  "id": "mead",
+  "display_name": "Mead",
+  "abv_range_pct": [
+    6,
+    18
+  ],
+  "base_method": "fermentation"
+}

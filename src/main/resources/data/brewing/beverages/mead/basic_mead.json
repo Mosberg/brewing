@@ -1,0 +1,112 @@
+{
+  "type": "brewing:beverage",
+  "schema_version": 1,
+  "id": "brewing:mead/basic_mead",
+  "category": "beer",
+  "style": "mead",
+  "container": "brewing:wine_bottle",
+  "rarity": "common",
+  "stack_size": 16,
+  "brewing": {
+    "brew_time_seconds": 120,
+    "brew_time_ticks": 2400,
+    "station_tags": ["brewing:fermenter", "brewing:barrel"],
+    "difficulty": 2,
+    "batch_size_servings": 4,
+    "byproducts": [],
+    "failure": {
+      "enabled": false
+    }
+  },
+  "stats": {
+    "alcohol_by_volume": 12.0,
+    "strength": 1.0,
+    "intoxication": {
+      "value": 1.0,
+      "decay_rate_per_tick": 0.001
+    },
+    "nutrition": {
+      "hunger": 0,
+      "saturation": 0.0
+    }
+  },
+  "quality": {
+    "tier": "standard",
+    "supports_quality": true,
+    "quality_on_brew": 0.5,
+    "quality_floor": 0.2,
+    "quality_ceiling": 0.9
+  },
+  "aging": {
+    "supported": false
+  },
+  "spoilage": {
+    "enabled": false
+  },
+  "carbonation": {
+    "level": "medium",
+    "foam": {
+      "enabled": true,
+      "spill_chance_on_open": 0.0
+    }
+  },
+  "visuals": {
+    "liquid_color": 14595671,
+    "bubbles": "medium",
+    "glow": "none",
+    "particle": "minecraft:happy_villager"
+  },
+  "effects": [],
+  "ingredients": [
+    {
+      "item": "minecraft:water_bucket",
+      "count": 1
+    },
+    {
+      "item": "brewing:honey",
+      "count": 4
+    },
+    {
+      "item": "brewing:yeast",
+      "count": 1
+    },
+    {
+      "item": "brewing:oak_chips",
+      "count": 1
+    }
+  ],
+  "tags": ["brewing:fermented", "brewing:honey", "brewing:aged"],
+  "loot": {
+    "weight": 0,
+    "tables": []
+  },
+  "gates": {
+    "requires_feature_flag": "brewing:enabled",
+    "requires_gamerule_true": "brewingEnabled"
+  },
+  "client": {
+    "use_liquid_tint": true,
+    "show_strength_line": true,
+    "show_quality_line": true,
+    "show_spoilage_hint": false,
+    "show_alcohol_by_volume": true,
+    "tooltip_theme": "default"
+  },
+  "text": {
+    "name_key": "brewing.beverage.mead.basic_mead.name",
+    "lore_key": "brewing.beverage.mead.basic_mead.lore",
+    "tooltip_key": "brewing.beverage.mead.basic_mead.tooltip",
+    "effect_text_key": "brewing.beverage.mead.basic_mead.effects",
+    "brew_time_text_key": "brewing.beverage.mead.basic_mead.brew_time",
+    "ingredients_text_key": "brewing.beverage.mead.basic_mead.ingredients",
+    "container_text_key": "brewing.beverage.mead.basic_mead.container",
+    "rarity_text_key": "brewing.beverage.mead.basic_mead.rarity",
+    "category_text_key": "brewing.beverage.mead.basic_mead.category",
+    "flavor_text_key": "brewing.beverage.mead.basic_mead.flavor",
+    "warning_key": "brewing.beverage.mead.basic_mead.warning",
+    "crafting_instructions_key": "brewing.beverage.mead.basic_mead.instructions"
+  },
+  "meta": {
+    "display_name": "Mead"
+  }
+}

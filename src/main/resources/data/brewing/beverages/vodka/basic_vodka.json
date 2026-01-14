@@ -1,0 +1,113 @@
+{
+  "type": "brewing:beverage",
+  "schema_version": 1,
+  "id": "brewing:vodka/basic_vodka",
+  "category": "spirit",
+  "style": "vodka",
+  "container": "brewing:glass_flask",
+  "rarity": "common",
+  "stack_size": 16,
+  "brewing": {
+    "brew_time_seconds": 120,
+    "brew_time_ticks": 2400,
+    "station_tags": ["brewing:fermenter", "brewing:still", "brewing:filter"],
+    "difficulty": 2,
+    "batch_size_servings": 4,
+    "byproducts": [],
+    "failure": {
+      "enabled": false
+    }
+  },
+  "stats": {
+    "alcohol_by_volume": 40.0,
+    "strength": 1.0,
+    "intoxication": {
+      "value": 1.0,
+      "decay_rate_per_tick": 0.001
+    },
+    "nutrition": {
+      "hunger": 0,
+      "saturation": 0.0
+    }
+  },
+  "quality": {
+    "tier": "standard",
+    "supports_quality": true,
+    "quality_on_brew": 0.5,
+    "quality_floor": 0.2,
+    "quality_ceiling": 0.9
+  },
+  "aging": {
+    "supported": false
+  },
+  "spoilage": {
+    "enabled": false
+  },
+  "carbonation": {
+    "level": "none",
+    "foam": {
+      "enabled": false,
+      "spill_chance_on_open": 0.0
+    }
+  },
+  "visuals": {
+    "liquid_color": 16765040,
+    "bubbles": "none",
+    "glow": "none",
+    "particle": "minecraft:happy_villager"
+  },
+  "effects": [],
+  "ingredients": [
+    {
+      "item": "brewing:wheat",
+      "count": 4
+    },
+    {
+      "item": "brewing:yeast",
+      "count": 1
+    },
+    {
+      "item": "brewing:charcoal",
+      "count": 1
+    }
+  ],
+  "tags": [
+    "brewing:spirit",
+    "brewing:vodka",
+    "brewing:distilled",
+    "brewing:filtered"
+  ],
+  "loot": {
+    "weight": 0,
+    "tables": []
+  },
+  "gates": {
+    "requires_feature_flag": "brewing:enabled",
+    "requires_gamerule_true": "brewingEnabled"
+  },
+  "client": {
+    "use_liquid_tint": true,
+    "show_strength_line": true,
+    "show_quality_line": true,
+    "show_spoilage_hint": false,
+    "show_alcohol_by_volume": true,
+    "tooltip_theme": "default"
+  },
+  "text": {
+    "name_key": "brewing.beverage.vodka.basic_vodka.name",
+    "lore_key": "brewing.beverage.vodka.basic_vodka.lore",
+    "tooltip_key": "brewing.beverage.vodka.basic_vodka.tooltip",
+    "effect_text_key": "brewing.beverage.vodka.basic_vodka.effects",
+    "brew_time_text_key": "brewing.beverage.vodka.basic_vodka.brew_time",
+    "ingredients_text_key": "brewing.beverage.vodka.basic_vodka.ingredients",
+    "container_text_key": "brewing.beverage.vodka.basic_vodka.container",
+    "rarity_text_key": "brewing.beverage.vodka.basic_vodka.rarity",
+    "category_text_key": "brewing.beverage.vodka.basic_vodka.category",
+    "flavor_text_key": "brewing.beverage.vodka.basic_vodka.flavor",
+    "warning_key": "brewing.beverage.vodka.basic_vodka.warning",
+    "crafting_instructions_key": "brewing.beverage.vodka.basic_vodka.instructions"
+  },
+  "meta": {
+    "display_name": "Vodka"
+  }
+}

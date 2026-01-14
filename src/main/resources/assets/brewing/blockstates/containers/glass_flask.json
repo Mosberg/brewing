@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "brewing:block/containers/glass_flask"
+    }
+  }
+}

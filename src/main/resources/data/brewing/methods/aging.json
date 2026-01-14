@@ -1,0 +1,8 @@
+{
+  "id": "brewing:aging",
+  "name_key": "brewing.method.aging.name",
+  "tooltip_key": "brewing.method.aging.tooltip",
+  "roles": [
+    "brewing:barrel"
+  ]
+}

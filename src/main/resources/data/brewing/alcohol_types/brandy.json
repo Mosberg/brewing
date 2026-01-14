@@ -1,0 +1,9 @@
+{
+  "id": "brandy",
+  "display_name": "Brandy",
+  "abv_range_pct": [
+    35,
+    60
+  ],
+  "base_method": "distillation"
+}

@@ -1,0 +1,173 @@
+{
+  "type": "brewing:container",
+  "id": "brewing:pressurized_metal_keg",
+  "container_kind": "pressurized_keg",
+  "stack_size": 1,
+  "rarity": "rare",
+  "category": "containers",
+  "meta": {
+    "display_name": "Pressurized Metal Keg",
+    "icon": "brewing:pressurized_metal_keg_icon",
+    "notes": "Advanced keg with pressure control and temperature regulation"
+  },
+  "durability": {
+    "breakable": true,
+    "max_damage": 800,
+    "fireproof": true,
+    "explosion_resistance": "high"
+  },
+  "material": {
+    "metal": {
+      "metal_type": "metal",
+      "supports_metal_variants": true,
+      "allowed_metal_types": ["copper", "iron", "gold", "netherite"],
+      "flavor_bias": "vanilla"
+    }
+  },
+  "liquid": {
+    "can_contain_liquid": true,
+    "capacity_mb": 30000,
+    "accepted_tags": [
+      "brewing:beer",
+      "brewing:spirit",
+      "brewing:carbonated",
+      "brewing:pressurized"
+    ],
+    "default_fill_mb": 0,
+    "transfer": {
+      "fill_rate_mb_per_tick": 150,
+      "pour_rate_mb_per_tick": 100,
+      "allow_partial": true
+    }
+  },
+  "seal": {
+    "starts_sealed": true,
+    "reopenable": true,
+    "seal_quality": "pressure_rated",
+    "leak_chance_per_minute_open": 0.0001,
+    "oxidation_multiplier_open": 0.8,
+    "spoilage_multiplier_open": 0.9
+  },
+  "pressure": {
+    "supports_pressure": true,
+    "carbonation_style": "forced_carbonation",
+    "max_pressure": 60.0,
+    "burst": {
+      "enabled": true,
+      "pressure_threshold": 70.0,
+      "drop_contents_on_burst": false,
+      "burst_sound": "minecraft:entity.generic.explode"
+    }
+  },
+  "temperature": {
+    "insulation_factor": 6.0,
+    "preferred_serving": "cool",
+    "freezing_safe": true,
+    "heat_safe": true
+  },
+  "logic": {
+    "keg_logic": {
+      "tap_flow_rate_mb_per_second": 200,
+      "pressure_build_rate": 0.1,
+      "pressure_release_rate": 0.05,
+      "natural_carbonation_days": 7,
+      "forced_carbonation_hours": 24,
+      "serving_count_estimate": 30,
+      "auto_pressure_control": true,
+      "max_tap_pressure": 35.0,
+      "co2_injection": {
+        "enabled": true,
+        "rate_per_tick": 0.01,
+        "fuel_item": "brewing:co2_cartridge",
+        "fuel_duration_ticks": 72000
+      },
+      "cooling": {
+        "enabled": true,
+        "target_temperature": "cool",
+        "cooling_rate": 0.02,
+        "power_required": true
+      }
+    }
+  },
+  "interaction": {
+    "use_action": "tap",
+    "returns_container": true,
+    "return_item_id": "brewing:pressurized_metal_keg",
+    "consume_on_use": false,
+    "consume_on_drink": false,
+    "allow_fill_from": [
+      "brewing:fermenter",
+      "brewing:brewing_stand",
+      "brewing:advanced_brewery",
+      "brewing:distillery"
+    ],
+    "allow_pour_to": [
+      "brewing:aluminum_can",
+      "brewing:glass_flask",
+      "brewing:copper_keg",
+      "minecraft:glass_bottle"
+    ]
+  },
+  "client": {
+    "render_mode": "block_entity",
+    "liquid_tint_from_content": true,
+    "show_fill_level_tooltip": true,
+    "fill_level_steps": 20
+  },
+  "gates": {
+    "requires_feature_flag": "brewing:advanced_kegs",
+    "requires_gamerule_true": "doAlchemyBrewing"
+  },
+  "text": {
+    "lore_key": "item.brewing.pressurized_metal_keg.lore",
+    "tooltip_key": "item.brewing.pressurized_metal_keg.tooltip",
+    "flavor_text_key": "item.brewing.pressurized_metal_keg.flavor",
+    "crafting_instructions_key": "item.brewing.pressurized_metal_keg.crafting"
+  },
+  "state_storage": {
+    "mode": "both",
+    "schema_version": 1,
+    "defaults": {
+      "payload": {
+        "content_id": "",
+        "amount_mb": 0,
+        "quality": 0.75,
+        "temperature": "cool",
+        "pressure": 0.0,
+        "sealed": true,
+        "created_time": 0
+      }
+    },
+    "item_nbt": {
+      "enabled": true,
+      "nbt_root": "AlchemyData",
+      "payload_key": "Container",
+      "fields": {
+        "pressure_psi": "float",
+        "temperature_celsius": "float",
+        "carbonation_level": "float",
+        "co2_remaining": "int",
+        "last_tap_time": "long",
+        "total_pours": "int"
+      }
+    },
+    "placed_block": {
+      "enabled": true,
+      "block_id": "brewing:pressurized_metal_keg_block",
+      "block_entity_id": "brewing:pressurized_metal_keg",
+      "sync_to_client": true,
+      "drops_keep_contents": true
+    },
+    "conversion": {
+      "on_place": "copy_to_block",
+      "on_break": "copy_to_item",
+      "merge_strategy": "merge"
+    }
+  },
+  "config": {
+    "enabled": true,
+    "capacity_multiplier": 1.0,
+    "transfer_rate_multiplier": 1.0,
+    "disable_pressure_burst": false
+  }
+}

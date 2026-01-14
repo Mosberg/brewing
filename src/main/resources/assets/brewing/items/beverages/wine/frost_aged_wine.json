@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "brewing:item/beverages/wine/frost_aged_wine"
+  }
+}

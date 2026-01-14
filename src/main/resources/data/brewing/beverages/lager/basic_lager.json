@@ -1,0 +1,121 @@
+{
+  "type": "brewing:beverage",
+  "schema_version": 1,
+  "id": "brewing:lager/basic_lager",
+  "category": "beer",
+  "style": "lager",
+  "container": "brewing:glass_bottle",
+  "rarity": "common",
+  "stack_size": 16,
+  "brewing": {
+    "brew_time_seconds": 120,
+    "brew_time_ticks": 2400,
+    "station_tags": [
+      "brewing:kettle",
+      "brewing:fermenter",
+      "brewing:carbonation"
+    ],
+    "difficulty": 2,
+    "batch_size_servings": 4,
+    "byproducts": [],
+    "failure": {
+      "enabled": false
+    }
+  },
+  "stats": {
+    "alcohol_by_volume": 5.0,
+    "strength": 0.5,
+    "intoxication": {
+      "value": 0.5,
+      "decay_rate_per_tick": 0.001
+    },
+    "nutrition": {
+      "hunger": 0,
+      "saturation": 0.0
+    }
+  },
+  "quality": {
+    "tier": "standard",
+    "supports_quality": true,
+    "quality_on_brew": 0.5,
+    "quality_floor": 0.2,
+    "quality_ceiling": 0.9
+  },
+  "aging": {
+    "supported": false
+  },
+  "spoilage": {
+    "enabled": false
+  },
+  "carbonation": {
+    "level": "medium",
+    "foam": {
+      "enabled": true,
+      "spill_chance_on_open": 0.0
+    }
+  },
+  "visuals": {
+    "liquid_color": 14595671,
+    "bubbles": "medium",
+    "glow": "none",
+    "particle": "minecraft:happy_villager"
+  },
+  "effects": [],
+  "ingredients": [
+    {
+      "item": "minecraft:water_bucket",
+      "count": 1
+    },
+    {
+      "item": "brewing:barley",
+      "count": 3
+    },
+    {
+      "item": "brewing:hops",
+      "count": 1
+    },
+    {
+      "item": "brewing:yeast",
+      "count": 1
+    }
+  ],
+  "tags": [
+    "brewing:beer",
+    "brewing:lager",
+    "brewing:fermented",
+    "brewing:grain"
+  ],
+  "loot": {
+    "weight": 0,
+    "tables": []
+  },
+  "gates": {
+    "requires_feature_flag": "brewing:enabled",
+    "requires_gamerule_true": "brewingEnabled"
+  },
+  "client": {
+    "use_liquid_tint": true,
+    "show_strength_line": true,
+    "show_quality_line": true,
+    "show_spoilage_hint": false,
+    "show_alcohol_by_volume": true,
+    "tooltip_theme": "default"
+  },
+  "text": {
+    "name_key": "brewing.beverage.lager.basic_lager.name",
+    "lore_key": "brewing.beverage.lager.basic_lager.lore",
+    "tooltip_key": "brewing.beverage.lager.basic_lager.tooltip",
+    "effect_text_key": "brewing.beverage.lager.basic_lager.effects",
+    "brew_time_text_key": "brewing.beverage.lager.basic_lager.brew_time",
+    "ingredients_text_key": "brewing.beverage.lager.basic_lager.ingredients",
+    "container_text_key": "brewing.beverage.lager.basic_lager.container",
+    "rarity_text_key": "brewing.beverage.lager.basic_lager.rarity",
+    "category_text_key": "brewing.beverage.lager.basic_lager.category",
+    "flavor_text_key": "brewing.beverage.lager.basic_lager.flavor",
+    "warning_key": "brewing.beverage.lager.basic_lager.warning",
+    "crafting_instructions_key": "brewing.beverage.lager.basic_lager.instructions"
+  },
+  "meta": {
+    "display_name": "Lager"
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "type": "brewing:container",
+  "id": "brewing:metal_keg",
+  "container_kind": "keg",
+  "stack_size": 1,
+  "rarity": "uncommon",
+  "category": "containers",
+  "durability": {
+    "breakable": true,
+    "max_damage": 400,
+    "fireproof": false,
+    "explosion_resistance": "high"
+  },
+  "material": {
+    "metal": {
+      "metal_type": "metal",
+      "supports_metal_variants": true,
+      "allowed_metal_types": ["copper", "iron", "gold", "netherite"],
+      "flavor_bias": "vanilla"
+    }
+  },
+  "liquid": {
+    "can_contain_liquid": true,
+    "capacity_mb": 30000,
+    "accepted_tags": ["brewing:beer", "brewing:carbonated"],
+    "default_fill_mb": 0,
+    "transfer": {
+      "fill_rate_mb_per_tick": 50,
+      "pour_rate_mb_per_tick": 25,
+      "allow_partial": true
+    }
+  },
+  "seal": {
+    "starts_sealed": true,
+    "reopenable": true,
+    "seal_quality": "excellent",
+    "leak_chance_per_minute_open": 0.0005,
+    "oxidation_multiplier_open": 1.2,
+    "spoilage_multiplier_open": 1.1
+  },
+  "pressure": {
+    "supports_pressure": true,
+    "carbonation_style": "natural",
+    "max_pressure": 30.0,
+    "burst": {
+      "enabled": true,
+      "pressure_threshold": 35.0,
+      "drop_contents_on_burst": true,
+      "burst_sound": "minecraft:entity.generic.explode"
+    }
+  },
+  "temperature": {
+    "insulation_factor": 4.0,
+    "preferred_serving": "cool",
+    "freezing_safe": true,
+    "heat_safe": true
+  },
+  "logic": {
+    "keg_logic": {
+      "tap_flow_rate_mb_per_second": 100,
+      "pressure_build_rate": 0.05,
+      "natural_carbonation_days": 14,
+      "serving_count_estimate": 15
+    }
+  },
+  "interaction": {
+    "use_action": "tap",
+    "returns_container": true,
+    "return_item_id": "brewing:metal_keg",
+    "consume_on_use": false,
+    "consume_on_drink": false,
+    "allow_fill_from": ["brewing:fermenter", "brewing:brewing_stand"],
+    "allow_pour_to": ["brewing:metal_can", "minecraft:glass_bottle"]
+  },
+  "client": {
+    "render_mode": "block_entity",
+    "liquid_tint_from_content": true,
+    "show_fill_level_tooltip": true,
+    "fill_level_steps": 5
+  },
+  "gates": {
+    "requires_feature_flag": "brewing:kegs",
+    "requires_gamerule_true": "doAlchemyBrewing"
+  },
+  "text": {
+    "lore_key": "item.brewing.metal_keg.lore",
+    "tooltip_key": "item.brewing.metal_keg.tooltip",
+    "flavor_text_key": "item.brewing.metal_keg.flavor",
+    "crafting_instructions_key": "item.brewing.metal_keg.crafting"
+  },
+  "state_storage": {
+    "mode": "both",
+    "schema_version": 1,
+    "defaults": {
+      "payload": {
+        "content_id": "",
+        "amount_mb": 0,
+        "quality": 0.7,
+        "temperature": "cool",
+        "pressure": 0.0,
+        "sealed": true,
+        "created_time": 0
+      }
+    },
+    "item_nbt": {
+      "enabled": true,
+      "nbt_root": "AlchemyData",
+      "payload_key": "Container",
+      "fields": {}
+    },
+    "placed_block": {
+      "enabled": true,
+      "block_id": "brewing:metal_keg_block",
+      "block_entity_id": "brewing:metal_keg",
+      "sync_to_client": true,
+      "drops_keep_contents": true
+    },
+    "conversion": {
+      "on_place": "copy_to_block",
+      "on_break": "copy_to_item",
+      "merge_strategy": "merge"
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "type": "brewing:equipment",
+  "schema_version": 1,
+  "id": "brewing:brewing_kettle",
+  "name_key": "block.brewing.brewing_kettle",
+  "rarity": "common",
+  "material": "metal",
+  "function": "mashing",
+  "category": "equipment",
+  "placement": {
+    "kind": "block",
+    "block_id": "brewing:brewing_kettle",
+    "block_entity_id": "brewing:brewing_kettle",
+    "facing": "horizontal",
+    "requires_solid_support": true
+  },
+  "inventory": {
+    "capacity": 6,
+    "stack_limit_per_slot": 64,
+    "accepts_item_tags": [],
+    "rejects_item_tags": [],
+    "slot_roles": {
+      "0-3": "input",
+      "4": "catalyst",
+      "5": "output"
+    },
+    "quick_move": {
+      "enabled": true,
+      "priority": [
+        "input",
+        "catalyst",
+        "output"
+      ]
+    }
+  },
+  "aging": {
+    "recipe_source": "data",
+    "recipe_type": "brewing:mashing",
+    "aging_multiplier": 1.0,
+    "progress_persists": true
+  },
+  "upgrades": {
+    "enabled": false,
+    "slots": 0,
+    "allowed_upgrade_tags": [],
+    "effects": {}
+  },
+  "client": {
+    "screen_id": "brewing:brewing_kettle_screen",
+    "show_progress": true,
+    "show_quality": false,
+    "show_environment_state": false
+  },
+  "gates": {
+    "requires_feature_flag": "brewing:enabled",
+    "requires_gamerule_true": "brewingEnabled"
+  },
+  "text": {
+    "name_key": "brewing.equipment.brewing_kettle.name",
+    "tooltip_key": "brewing.equipment.brewing_kettle.tooltip"
+  },
+  "meta": {
+    "display_name": "Brewing Kettle"
+  }
+}

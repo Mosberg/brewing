@@ -1,0 +1,9 @@
+{
+  "id": "whisky",
+  "display_name": "Whisky",
+  "abv_range_pct": [
+    35,
+    55
+  ],
+  "base_method": "distillation"
+}

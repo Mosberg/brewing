@@ -1,0 +1,9 @@
+{
+  "id": "cider",
+  "display_name": "Cider",
+  "abv_range_pct": [
+    3,
+    10
+  ],
+  "base_method": "fermentation"
+}

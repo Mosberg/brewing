@@ -1,0 +1,8 @@
+{
+  "id": "brewing:mashing",
+  "name_key": "brewing.method.mashing.name",
+  "tooltip_key": "brewing.method.mashing.tooltip",
+  "roles": [
+    "brewing:kettle"
+  ]
+}

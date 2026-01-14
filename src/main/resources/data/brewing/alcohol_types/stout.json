@@ -1,0 +1,9 @@
+{
+  "id": "stout",
+  "display_name": "Stout",
+  "abv_range_pct": [
+    4,
+    12
+  ],
+  "base_method": "fermentation"
+}

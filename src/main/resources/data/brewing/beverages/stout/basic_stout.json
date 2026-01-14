@@ -1,0 +1,163 @@
+{
+  "type": "brewing:beverage",
+  "schema_version": 1,
+  "id": "brewing:basic_stout",
+  "category": "beer",
+  "style": "Imperial Stout",
+  "container": "brewing:oak_barrel",
+  "rarity": "rare",
+  "stack_size": 8,
+  "brewing": {
+    "brew_time_seconds": 600,
+    "brew_time_ticks": 12000,
+    "station_tags": ["brewing:master_brewery", "brewing:fermenter"],
+    "difficulty": 7,
+    "batch_size_servings": 8,
+    "byproducts": [
+      {
+        "item": "minecraft:cocoa_beans",
+        "count": 1,
+        "chance": 0.2
+      }
+    ],
+    "failure": {
+      "enabled": true,
+      "base_fail_chance": 0.15,
+      "outcome": "brewing:burnt_brew",
+      "extra_effects": [
+        {
+          "effect": "minecraft:nausea",
+          "duration": 400,
+          "amplifier": 1,
+          "chance": 1.0,
+          "show_particles": true,
+          "show_icon": true,
+          "ambient": false
+        }
+      ]
+    }
+  },
+  "stats": {
+    "alcohol_by_volume": 9.5,
+    "strength": 0.55,
+    "intoxication": {
+      "value": 0.35,
+      "decay_rate_per_tick": 0.0005
+    },
+    "nutrition": {
+      "hunger": 4,
+      "saturation": 3.0
+    }
+  },
+  "quality": {
+    "tier": "premium",
+    "supports_quality": true,
+    "quality_on_brew": 0.6,
+    "quality_floor": 0.4,
+    "quality_ceiling": 0.99
+  },
+  "aging": {
+    "supported": true,
+    "min_days": 7,
+    "max_days": 90,
+    "preferred_container_tags": ["brewing:barrel", "brewing:oak"],
+    "quality_bonus_per_day": 0.005,
+    "risk_per_day_open": 0.01
+  },
+  "spoilage": {
+    "enabled": true,
+    "base_decay_per_day": 0.01,
+    "opened_decay_multiplier": 2.0,
+    "temperature": {
+      "preferred": "cellar",
+      "hot_decay_multiplier": 3.0,
+      "cold_decay_multiplier": 0.3
+    }
+  },
+  "carbonation": {
+    "level": "low",
+    "foam": {
+      "enabled": true,
+      "spill_chance_on_open": 0.05
+    }
+  },
+  "visuals": {
+    "liquid_color": 2433843,
+    "bubbles": "light",
+    "glow": "subtle",
+    "particle": "minecraft:bubble"
+  },
+  "effects": [
+    {
+      "effect": "minecraft:resistance",
+      "duration": 600,
+      "amplifier": 0,
+      "chance": 0.9,
+      "show_particles": false,
+      "show_icon": true,
+      "ambient": true
+    },
+    {
+      "effect": "minecraft:strength",
+      "duration": 300,
+      "amplifier": 0,
+      "chance": 0.7,
+      "show_particles": false,
+      "show_icon": true,
+      "ambient": false
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "minecraft:wheat",
+      "count": 5
+    },
+    {
+      "item": "minecraft:cocoa_beans",
+      "count": 3
+    },
+    {
+      "item": "minecraft:sugar",
+      "count": 2
+    },
+    {
+      "item": "minecraft:oak_planks",
+      "count": 1
+    }
+  ],
+  "tags": ["brewing:beer", "brewing:stout", "brewing:aged", "brewing:premium"],
+  "loot": {
+    "weight": 3,
+    "tables": ["brewing:chests/master_brewery", "brewing:chests/rare_tavern"]
+  },
+  "gates": {
+    "requires_feature_flag": "brewing:advanced_brewing",
+    "requires_gamerule_true": "doAlchemyBrewing",
+    "min_player_level": 25
+  },
+  "client": {
+    "use_liquid_tint": true,
+    "show_strength_line": true,
+    "show_quality_line": true,
+    "show_spoilage_hint": true,
+    "show_alcohol_by_volume": true,
+    "tooltip_theme": "detailed"
+  },
+  "text": {
+    "name_key": "item.brewing.basic_stout.name",
+    "lore_key": "item.brewing.basic_stout.lore",
+    "tooltip_key": "item.brewing.basic_stout.tooltip",
+    "effect_text_key": "item.brewing.basic_stout.effects",
+    "brew_time_text_key": "item.brewing.basic_stout.brew_time",
+    "ingredients_text_key": "item.brewing.basic_stout.ingredients",
+    "container_text_key": "item.brewing.basic_stout.container",
+    "rarity_text_key": "item.brewing.basic_stout.rarity",
+    "category_text_key": "item.brewing.basic_stout.category",
+    "flavor_text_key": "item.brewing.basic_stout.flavor",
+    "warning_key": "item.brewing.basic_stout.warning",
+    "crafting_instructions_key": "item.brewing.basic_stout.crafting"
+  },
+  "meta": {
+    "display_name": "Stout"
+  }
+}

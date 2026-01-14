@@ -1,0 +1,12 @@
+# Core dependencies for texture generation tools
+# Tested with: Python 3.10+
+
+# Image processing and manipulation
+pillow>=10.0.0
+
+# Numerical computing and array operations
+numpy>=1.24.0
+
+# JSON schema validation (for brewing data validators)
+jsonschema>=4.18.0
+

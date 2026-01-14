@@ -1,0 +1,9 @@
+{
+  "id": "gin",
+  "display_name": "Gin",
+  "abv_range_pct": [
+    35,
+    50
+  ],
+  "base_method": "maceration_distillation"
+}

@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "brewing:item/equipment/aging_barrel"
+  }
+}

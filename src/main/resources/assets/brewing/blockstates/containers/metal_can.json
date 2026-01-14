@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "brewing:block/containers/metal_can"
+    }
+  }
+}

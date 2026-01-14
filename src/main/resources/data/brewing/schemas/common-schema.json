@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mosberg.github.io/schemas/brewing/common-schema.json",
+  "title": "Brewing Common Schema Definitions",
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "Identifier": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.-]+:[a-z0-9_/.-]+$"
+    },
+    "IdentifierOrVanilla": {
+      "type": "string",
+      "pattern": "^([a-z0-9_.-]+:[a-z0-9_/.-]+|minecraft:[a-z0-9_/.-]+)$"
+    },
+    "TagId": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.-]+:[a-z0-9_/.-]+$"
+    },
+    "Rarity": { "enum": ["common", "uncommon", "rare", "epic"] },
+    "TemperaturePreset": {
+      "enum": ["ambient", "cool", "cold", "cellar", "hot"]
+    },
+
+    "EventList": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/EventAction" },
+      "default": []
+    },
+    "EventAction": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["type"],
+      "properties": {
+        "type": { "type": "string", "minLength": 1 },
+        "conditions": { "type": "array", "items": { "type": "object" } },
+        "params": { "type": "object", "additionalProperties": true }
+      }
+    }
+  }
+}

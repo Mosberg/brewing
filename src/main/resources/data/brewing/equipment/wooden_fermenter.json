@@ -1,0 +1,114 @@
+{
+  "type": "brewing:equipment",
+  "schema_version": 1,
+  "id": "brewing:wooden_fermenter",
+  "name_key": "block.brewing.wooden_fermenter",
+  "text": {
+    "name_key": "block.brewing.wooden_fermenter",
+    "tooltip_key": "block.brewing.wooden_fermenter.tooltip"
+  },
+  "rarity": "uncommon",
+  "material": "wood",
+  "function": "fermentation",
+  "category": "equipment",
+  "placement": {
+    "kind": "block",
+    "block_id": "brewing:wooden_fermenter",
+    "block_entity_id": "brewing:wooden_fermenter",
+    "facing": "horizontal",
+    "requires_solid_support": true
+  },
+  "inventory": {
+    "capacity": 9,
+    "stack_limit_per_slot": 64,
+    "accepts_item_tags": ["brewing:fermentable", "brewing:ingredient"],
+    "rejects_item_tags": ["brewing:non_fermentable"],
+    "slot_roles": {
+      "0-5": "input",
+      "6": "catalyst",
+      "7-8": "output"
+    },
+    "quick_move": {
+      "enabled": true,
+      "priority": ["input", "catalyst", "output"]
+    }
+  },
+  "aging": {
+    "recipe_source": "data",
+    "recipe_type": "brewing:fermentation",
+    "aging_multiplier": 1.5,
+    "progress_persists": true,
+    "quality": {
+      "base_quality": 0.7,
+      "max_quality": 0.95,
+      "quality_variance": 0.1
+    },
+    "spoilage": {
+      "enabled": true,
+      "base_spoilage_rate": 0.01
+    },
+    "environment_modifiers": {
+      "temperature": {
+        "optimal_range": [15, 25],
+        "penalty_per_degree": 0.02
+      },
+      "humidity": {
+        "optimal_range": [40, 70],
+        "affects_quality": true
+      }
+    }
+  },
+  "wood_variants": {
+    "supports_variants": true,
+    "allowed_types": ["wooden", "spruce", "birch"],
+    "wood_affects_flavor": true
+  },
+  "interaction": {
+    "right_click_action": "open_ui",
+    "shift_right_click_action": "rotate",
+    "allow_automation": true
+  },
+  "automation": {
+    "supports_hoppers": true,
+    "supports_pipes": false,
+    "redstone_controllable": true,
+    "comparator_output": "fill_level"
+  },
+  "upgrades": {
+    "enabled": true,
+    "slots": 2,
+    "allowed_upgrade_tags": [
+      "brewing:fermenter_upgrade",
+      "brewing:temperature_control"
+    ],
+    "effects": {
+      "speed_upgrade": 0.5,
+      "quality_upgrade": 0.1
+    }
+  },
+  "client": {
+    "screen_id": "brewing:fermenter_screen",
+    "show_progress": true,
+    "show_quality": true,
+    "show_environment_state": true,
+    "block_entity_renderer": "brewing:fermenter_renderer"
+  },
+  "gates": {
+    "requires_feature_flag": "brewing:brewing",
+    "requires_gamerule_true": "doAlchemyBrewing"
+  },
+  "crafting": {
+    "recipe_type": "minecraft:crafting_shaped",
+    "recipe_id": "brewing:wooden_fermenter",
+    "ingredients": {
+      "W": "minecraft:wooden_planks",
+      "I": "minecraft:iron_ingot",
+      "G": "minecraft:glass"
+    },
+    "pattern": ["WIW", "WGW", "WWW"]
+  },
+  "meta": {
+    "display_name": "wooden Fermenter",
+    "notes": "Basic fermentation station for brewing beer and other fermented beverages"
+  }
+}

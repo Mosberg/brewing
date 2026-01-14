@@ -1,0 +1,896 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mosberg.github.io/schemas/brewing/containers-schema.json",
+  "title": "Brewing Container Definition",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "type",
+    "id",
+    "container_kind",
+    "stack_size",
+    "category",
+    "durability",
+    "material",
+    "liquid",
+    "seal",
+    "pressure",
+    "temperature",
+    "interaction",
+    "client",
+    "gates",
+    "text",
+    "state_storage"
+  ],
+  "properties": {
+    "type": {
+      "const": "brewing:container"
+    },
+    "id": {
+      "$ref": "common-schema.json#/$defs/Identifier"
+    },
+    "container_kind": {
+      "$ref": "#/$defs/ContainerKind"
+    },
+    "stack_size": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 64
+    },
+    "rarity": {
+      "$ref": "common-schema.json#/$defs/Rarity"
+    },
+    "category": {
+      "type": "string",
+      "minLength": 1
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "display_name": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "sort_key": {
+          "type": "string"
+        }
+      }
+    },
+    "durability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "breakable",
+        "max_damage",
+        "fireproof",
+        "explosion_resistance"
+      ],
+      "properties": {
+        "breakable": {
+          "type": "boolean"
+        },
+        "max_damage": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fireproof": {
+          "type": "boolean"
+        },
+        "explosion_resistance": {
+          "$ref": "#/$defs/ResistanceTier"
+        }
+      }
+    },
+    "material": {
+      "$ref": "#/$defs/Material"
+    },
+    "liquid": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "can_contain_liquid",
+        "capacity_mb",
+        "accepted_tags",
+        "transfer"
+      ],
+      "properties": {
+        "can_contain_liquid": {
+          "type": "boolean"
+        },
+        "capacity_mb": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "accepted_tags": {
+          "type": "array",
+          "items": {
+            "$ref": "common-schema.json#/$defs/TagId"
+          },
+          "uniqueItems": true
+        },
+        "default_fill_mb": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "denied_tags": {
+          "type": "array",
+          "items": {
+            "$ref": "common-schema.json#/$defs/TagId"
+          },
+          "uniqueItems": true
+        },
+        "accepted_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "denied_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "transfer": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "fill_rate_mb_per_tick",
+            "pour_rate_mb_per_tick",
+            "allow_partial"
+          ],
+          "properties": {
+            "fill_rate_mb_per_tick": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "pour_rate_mb_per_tick": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "allow_partial": {
+              "type": "boolean"
+            },
+            "min_transfer_mb": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "max_transfer_mb": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    },
+    "seal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "starts_sealed",
+        "reopenable",
+        "seal_quality",
+        "leak_chance_per_minute_open",
+        "oxidation_multiplier_open",
+        "spoilage_multiplier_open"
+      ],
+      "properties": {
+        "starts_sealed": {
+          "type": "boolean"
+        },
+        "reopenable": {
+          "type": "boolean"
+        },
+        "seal_quality": {
+          "type": "string",
+          "minLength": 1
+        },
+        "leak_chance_per_minute_open": {
+          "type": "number",
+          "minimum": 0
+        },
+        "oxidation_multiplier_open": {
+          "type": "number",
+          "minimum": 0
+        },
+        "spoilage_multiplier_open": {
+          "type": "number",
+          "minimum": 0
+        },
+        "requires_tool": {
+          "$ref": "common-schema.json#/$defs/Identifier"
+        },
+        "tool_damage": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "pressure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "supports_pressure",
+        "carbonation_style",
+        "max_pressure",
+        "burst"
+      ],
+      "properties": {
+        "supports_pressure": {
+          "type": "boolean"
+        },
+        "carbonation_style": {
+          "$ref": "#/$defs/CarbonationStyle"
+        },
+        "max_pressure": {
+          "type": "number",
+          "minimum": 0
+        },
+        "burst": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "enabled",
+            "pressure_threshold",
+            "drop_contents_on_burst",
+            "burst_sound"
+          ],
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "pressure_threshold": {
+              "type": "number",
+              "minimum": 0
+            },
+            "drop_contents_on_burst": {
+              "type": "boolean"
+            },
+            "burst_sound": {
+              "type": "string",
+              "minLength": 1
+            },
+            "burst_particles": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "temperature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "insulation_factor",
+        "preferred_serving",
+        "freezing_safe",
+        "heat_safe"
+      ],
+      "properties": {
+        "insulation_factor": {
+          "type": "number"
+        },
+        "preferred_serving": {
+          "$ref": "common-schema.json#/$defs/TemperaturePreset"
+        },
+        "freezing_safe": {
+          "type": "boolean"
+        },
+        "heat_safe": {
+          "type": "boolean"
+        },
+        "heat_damage_per_tick": {
+          "type": "number",
+          "minimum": 0
+        },
+        "freeze_damage_per_tick": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "logic": {
+      "type": "object",
+      "description": "Container-specific logic modules (data-driven).",
+      "default": {},
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "interaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "use_action",
+        "returns_container",
+        "return_item_id"
+      ],
+      "properties": {
+        "use_action": {
+          "$ref": "#/$defs/UseAction"
+        },
+        "returns_container": {
+          "type": "boolean"
+        },
+        "return_item_id": {
+          "$ref": "common-schema.json#/$defs/Identifier"
+        },
+        "consume_on_use": {
+          "type": "boolean"
+        },
+        "consume_on_drink": {
+          "type": "boolean"
+        },
+        "allow_fill_from": {
+          "type": "array",
+          "items": {
+            "$ref": "common-schema.json#/$defs/Identifier"
+          },
+          "uniqueItems": true
+        },
+        "allow_pour_to": {
+          "type": "array",
+          "items": {
+            "$ref": "common-schema.json#/$defs/Identifier"
+          },
+          "uniqueItems": true
+        },
+        "cooldown_ticks": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "requires_sneak": {
+          "type": "boolean"
+        },
+        "requires_empty_hand": {
+          "type": "boolean"
+        },
+        "permissions": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "owner_only": {
+              "type": "boolean"
+            },
+            "trust_list_tag": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "client": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "render_mode",
+        "liquid_tint_from_content",
+        "show_fill_level_tooltip",
+        "fill_level_steps"
+      ],
+      "properties": {
+        "render_mode": {
+          "$ref": "#/$defs/RenderMode"
+        },
+        "liquid_tint_from_content": {
+          "type": "boolean"
+        },
+        "show_fill_level_tooltip": {
+          "type": "boolean"
+        },
+        "fill_level_steps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 64
+        },
+        "model": {
+          "type": "string"
+        },
+        "sounds": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "fill": {
+              "type": "string"
+            },
+            "pour": {
+              "type": "string"
+            },
+            "open": {
+              "type": "string"
+            },
+            "close": {
+              "type": "string"
+            },
+            "drink": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "gates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requires_feature_flag",
+        "requires_gamerule_true"
+      ],
+      "properties": {
+        "requires_feature_flag": {
+          "type": "string"
+        },
+        "requires_gamerule_true": {
+          "type": "string"
+        },
+        "requires_mods": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "text": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lore_key",
+        "tooltip_key",
+        "flavor_text_key",
+        "crafting_instructions_key"
+      ],
+      "properties": {
+        "lore_key": {
+          "type": "string"
+        },
+        "tooltip_key": {
+          "type": "string"
+        },
+        "flavor_text_key": {
+          "type": "string"
+        },
+        "crafting_instructions_key": {
+          "type": "string"
+        }
+      }
+    },
+    "state_storage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "schema_version",
+        "defaults",
+        "item_nbt",
+        "placed_block",
+        "conversion"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "item",
+            "block",
+            "both"
+          ]
+        },
+        "schema_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "defaults": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "payload"
+          ],
+          "properties": {
+            "payload": {
+              "$ref": "#/$defs/Payload"
+            }
+          }
+        },
+        "item_nbt": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "enabled",
+            "nbt_root",
+            "payload_key"
+          ],
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "nbt_root": {
+              "type": "string"
+            },
+            "payload_key": {
+              "type": "string"
+            },
+            "fields": {
+              "type": "object",
+              "description": "Optional mapping of payload fields to NBT keys or type descriptors.",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "placed_block": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "enabled",
+            "block_id",
+            "block_entity_id",
+            "sync_to_client",
+            "drops_keep_contents"
+          ],
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "block_id": {
+              "$ref": "common-schema.json#/$defs/IdentifierOrVanilla"
+            },
+            "block_entity_id": {
+              "type": "string"
+            },
+            "sync_to_client": {
+              "type": "boolean"
+            },
+            "drops_keep_contents": {
+              "type": "boolean"
+            }
+          }
+        },
+        "conversion": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "on_place",
+            "on_break",
+            "merge_strategy"
+          ],
+          "properties": {
+            "on_place": {
+              "type": "string"
+            },
+            "on_break": {
+              "type": "string"
+            },
+            "merge_strategy": {
+              "enum": [
+                "replace",
+                "merge"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "config": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "capacity_multiplier": {
+          "type": "number",
+          "minimum": 0,
+          "default": 1.0
+        },
+        "transfer_rate_multiplier": {
+          "type": "number",
+          "minimum": 0,
+          "default": 1.0
+        },
+        "disable_pressure_burst": {
+          "type": "boolean",
+          "default": false
+        },
+        "allow_automation": {
+          "type": "boolean",
+          "default": true
+        },
+        "allow_hoppers": {
+          "type": "boolean",
+          "default": true
+        },
+        "debug_logging": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "events": {
+      "type": "object",
+      "description": "Optional data-driven hooks for scripting-like behavior.",
+      "additionalProperties": false,
+      "properties": {
+        "on_fill": {
+          "$ref": "common-schema.json#/$defs/EventList"
+        },
+        "on_pour": {
+          "$ref": "common-schema.json#/$defs/EventList"
+        },
+        "on_open": {
+          "$ref": "common-schema.json#/$defs/EventList"
+        },
+        "on_close": {
+          "$ref": "common-schema.json#/$defs/EventList"
+        },
+        "on_tick": {
+          "$ref": "common-schema.json#/$defs/EventList"
+        },
+        "on_place": {
+          "$ref": "common-schema.json#/$defs/EventList"
+        },
+        "on_break": {
+          "$ref": "common-schema.json#/$defs/EventList"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "ContainerKind": {
+      "enum": [
+        "bottle",
+        "flask",
+        "can",
+        "keg",
+        "pressurized_keg",
+        "barrel"
+      ]
+    },
+    "ResistanceTier": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "CarbonationStyle": {
+      "enum": [
+        "none",
+        "low",
+        "medium",
+        "natural",
+        "forced_carbonation"
+      ]
+    },
+    "UseAction": {
+      "enum": [
+        "drink",
+        "tap",
+        "open_ui",
+        "place_or_open",
+        "place",
+        "none"
+      ]
+    },
+    "RenderMode": {
+      "enum": [
+        "default",
+        "item_with_liquid_tint",
+        "block_entity",
+        "block_with_fill_level"
+      ]
+    },
+    "Material": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "glass": {
+          "$ref": "#/$defs/GlassMaterial"
+        },
+        "wood": {
+          "$ref": "#/$defs/WoodMaterial"
+        },
+        "metal": {
+          "$ref": "#/$defs/MetalMaterial"
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "glass"
+          ]
+        },
+        {
+          "required": [
+            "wood"
+          ]
+        },
+        {
+          "required": [
+            "metal"
+          ]
+        }
+      ]
+    },
+    "GlassMaterial": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "glass_type",
+        "supports_glass_variants",
+        "allowed_glass_types",
+        "flavor_bias"
+      ],
+      "properties": {
+        "glass_type": {
+          "type": "string"
+        },
+        "supports_glass_variants": {
+          "type": "boolean"
+        },
+        "allowed_glass_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "flavor_bias": {
+          "type": "string"
+        },
+        "tint": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 16777215
+        }
+      }
+    },
+    "WoodMaterial": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "wood_type",
+        "supports_wood_variants",
+        "allowed_wood_types",
+        "flavor_bias"
+      ],
+      "properties": {
+        "wood_type": {
+          "type": "string"
+        },
+        "supports_wood_variants": {
+          "type": "boolean"
+        },
+        "allowed_wood_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "flavor_bias": {
+          "type": "string"
+        },
+        "char_level": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4
+        }
+      }
+    },
+    "MetalMaterial": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "metal_type",
+        "supports_metal_variants",
+        "allowed_metal_types",
+        "flavor_bias"
+      ],
+      "properties": {
+        "metal_type": {
+          "type": "string"
+        },
+        "supports_metal_variants": {
+          "type": "boolean"
+        },
+        "allowed_metal_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "flavor_bias": {
+          "type": "string"
+        },
+        "coating": {
+          "type": "string"
+        }
+      }
+    },
+    "Payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "content_id",
+        "amount_mb",
+        "quality",
+        "temperature",
+        "pressure",
+        "sealed",
+        "created_time"
+      ],
+      "properties": {
+        "content_id": {
+          "type": "string"
+        },
+        "amount_mb": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "quality": {
+          "type": "number"
+        },
+        "temperature": {
+          "$ref": "common-schema.json#/$defs/TemperaturePreset"
+        },
+        "pressure": {
+          "type": "number",
+          "minimum": 0
+        },
+        "sealed": {
+          "type": "boolean"
+        },
+        "created_time": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "custom_data": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    }
+  },
+  "patternProperties": {
+    "^x-": {
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "integer",
+        "boolean",
+        "null"
+      ]
+    },
+    "^_debug$": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

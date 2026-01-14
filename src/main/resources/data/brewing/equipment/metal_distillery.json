@@ -1,0 +1,124 @@
+{
+  "type": "brewing:equipment",
+  "schema_version": 1,
+  "id": "brewing:metal_distillery",
+  "name_key": "block.brewing.metal_distillery",
+  "text": {
+    "name_key": "block.brewing.metal_distillery",
+    "tooltip_key": "block.brewing.metal_distillery.tooltip"
+  },
+  "rarity": "rare",
+  "material": "metal",
+  "function": "distillation",
+  "category": "equipment",
+  "placement": {
+    "kind": "block",
+    "block_id": "brewing:metal_distillery",
+    "block_entity_id": "brewing:metal_distillery",
+    "facing": "horizontal",
+    "requires_solid_support": true
+  },
+  "inventory": {
+    "capacity": 12,
+    "stack_limit_per_slot": 64,
+    "accepts_item_tags": ["brewing:distillable", "brewing:spirit_base"],
+    "rejects_item_tags": ["brewing:undistillable"],
+    "slot_roles": {
+      "0-6": "input",
+      "7": "fuel",
+      "8": "catalyst",
+      "9-11": "output"
+    },
+    "quick_move": {
+      "enabled": true,
+      "priority": ["fuel", "input", "catalyst", "output"]
+    }
+  },
+  "aging": {
+    "recipe_source": "data",
+    "recipe_type": "brewing:distillation",
+    "aging_multiplier": 2.0,
+    "progress_persists": true,
+    "quality": {
+      "base_quality": 0.75,
+      "max_quality": 1.0,
+      "quality_variance": 0.15,
+      "skill_influence": 0.3
+    },
+    "spoilage": {
+      "enabled": false
+    },
+    "environment_modifiers": {
+      "temperature": {
+        "requires_heat": true,
+        "optimal_temperature": 78,
+        "tolerance": 5
+      },
+      "pressure": {
+        "affects_output": true,
+        "optimal_range": [0.8, 1.2]
+      }
+    }
+  },
+  "interaction": {
+    "right_click_action": "open_ui",
+    "shift_right_click_action": "quick_extract",
+    "allow_automation": true,
+    "requires_fuel": true
+  },
+  "automation": {
+    "supports_hoppers": true,
+    "supports_pipes": true,
+    "redstone_controllable": true,
+    "comparator_output": "processing_progress",
+    "pipe_sides": {
+      "top": "input",
+      "bottom": "output",
+      "sides": "fuel"
+    }
+  },
+  "upgrades": {
+    "enabled": true,
+    "slots": 3,
+    "allowed_upgrade_tags": [
+      "brewing:distillery_upgrade",
+      "brewing:efficiency_upgrade",
+      "brewing:precision_upgrade"
+    ],
+    "effects": {
+      "speed_upgrade": 0.75,
+      "quality_upgrade": 0.15,
+      "fuel_efficiency": 0.2
+    }
+  },
+  "client": {
+    "screen_id": "brewing:distillery_screen",
+    "show_progress": true,
+    "show_quality": true,
+    "show_environment_state": true,
+    "block_entity_renderer": "brewing:distillery_renderer",
+    "animated": true,
+    "particles": true
+  },
+  "gates": {
+    "requires_feature_flag": "brewing:distillation",
+    "requires_gamerule_true": "doAlchemyBrewing",
+    "min_player_level": 20
+  },
+  "crafting": {
+    "recipe_type": "minecraft:crafting_shaped",
+    "recipe_id": "brewing:metal_distillery",
+    "ingredients": {
+      "C": "minecraft:metal_block",
+      "I": "minecraft:iron_ingot",
+      "G": "minecraft:glass_pane",
+      "F": "minecraft:furnace",
+      "B": "minecraft:bucket"
+    },
+    "pattern": ["GCG", "CBC", "IFI"]
+  },
+  "meta": {
+    "display_name": "metal Distillery",
+    "notes": "Advanced equipment for distilling spirits with precision temperature control"
+  }
+}

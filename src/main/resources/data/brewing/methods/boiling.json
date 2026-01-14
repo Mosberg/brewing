@@ -1,0 +1,8 @@
+{
+  "id": "brewing:boiling",
+  "name_key": "brewing.method.boiling.name",
+  "tooltip_key": "brewing.method.boiling.tooltip",
+  "roles": [
+    "brewing:kettle"
+  ]
+}

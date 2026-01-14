@@ -1,0 +1,359 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mosberg.github.io/schemas/brewing/ingredients-schema.json",
+  "title": "Brewing Ingredient Definition",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "display_name",
+    "kind"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_./-]+$",
+      "description": "Ingredient id (typically used as a key in recipes/content)."
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "kind": {
+      "$ref": "#/$defs/IngredientKind"
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "notes": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "icon": {
+          "type": "string"
+        }
+      }
+    },
+    "item": {
+      "type": "object",
+      "description": "Optional mapping to the Minecraft item(s) that represent this ingredient.",
+      "additionalProperties": false,
+      "properties": {
+        "item_id": {
+          "$ref": "common-schema.json#/$defs/Identifier"
+        },
+        "item_tag": {
+          "$ref": "common-schema.json#/$defs/TagId"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 1
+        },
+        "nbt": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "item_id"
+          ]
+        },
+        {
+          "required": [
+            "item_tag"
+          ]
+        }
+      ]
+    },
+    "properties": {
+      "type": "object",
+      "description": "Optional chemistry/food-like properties used by processing methods.",
+      "additionalProperties": false,
+      "properties": {
+        "sugar_g_per_100g": {
+          "type": "number",
+          "minimum": 0
+        },
+        "starch_g_per_100g": {
+          "type": "number",
+          "minimum": 0
+        },
+        "acidity_ph": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 14
+        },
+        "bitterness_ibu": {
+          "type": "number",
+          "minimum": 0
+        },
+        "tannin": {
+          "type": "number",
+          "minimum": 0
+        },
+        "oiliness": {
+          "type": "number",
+          "minimum": 0
+        },
+        "color_srm": {
+          "type": "number",
+          "minimum": 0
+        },
+        "aroma_intensity": {
+          "type": "number",
+          "minimum": 0
+        },
+        "fermentability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "distillability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "processing": {
+      "type": "object",
+      "description": "Method-specific behavior modifiers (optional).",
+      "additionalProperties": false,
+      "properties": {
+        "mashing": {
+          "$ref": "#/$defs/MethodModifier"
+        },
+        "boiling": {
+          "$ref": "#/$defs/MethodModifier"
+        },
+        "fermentation": {
+          "$ref": "#/$defs/MethodModifier"
+        },
+        "maceration": {
+          "$ref": "#/$defs/MethodModifier"
+        },
+        "filtration": {
+          "$ref": "#/$defs/MethodModifier"
+        },
+        "conditioning": {
+          "$ref": "#/$defs/MethodModifier"
+        },
+        "distillation": {
+          "$ref": "#/$defs/MethodModifier"
+        },
+        "aging": {
+          "$ref": "#/$defs/MethodModifier"
+        }
+      }
+    },
+    "effects": {
+      "type": "object",
+      "description": "Optional gameplay and flavor effects contributed by this ingredient.",
+      "additionalProperties": false,
+      "properties": {
+        "flavor_notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "status_effects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/StatusEffect"
+          }
+        },
+        "quality_modifiers": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "base": {
+              "type": "number"
+            },
+            "multiplier": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "description": "Optional gating and compatibility constraints.",
+      "additionalProperties": false,
+      "properties": {
+        "requires_feature_flag": {
+          "type": "string"
+        },
+        "requires_gamerule_true": {
+          "type": "string"
+        },
+        "allowed_methods": {
+          "type": "array",
+          "items": {
+            "$ref": "common-schema.json#/$defs/Identifier"
+          },
+          "uniqueItems": true
+        },
+        "denied_methods": {
+          "type": "array",
+          "items": {
+            "$ref": "common-schema.json#/$defs/Identifier"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "config": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "rarity_weight": {
+          "type": "number",
+          "minimum": 0,
+          "default": 1.0
+        },
+        "debug_logging": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    }
+  },
+  "$defs": {
+    "IngredientKind": {
+      "enum": [
+        "fruit",
+        "grain",
+        "sweetener",
+        "botanical",
+        "aging",
+        "spice",
+        "yeast",
+        "water",
+        "additive"
+      ]
+    },
+    "MethodModifier": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "time_multiplier": {
+          "type": "number",
+          "minimum": 0
+        },
+        "yield_multiplier": {
+          "type": "number",
+          "minimum": 0
+        },
+        "quality_add": {
+          "type": "number"
+        },
+        "quality_multiplier": {
+          "type": "number",
+          "minimum": 0
+        },
+        "requires_min_temperature": {
+          "type": "number"
+        },
+        "requires_max_temperature": {
+          "type": "number"
+        },
+        "consumption_mb": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "byproducts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Byproduct"
+          }
+        }
+      }
+    },
+    "Byproduct": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "chance"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "chance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 1
+        }
+      }
+    },
+    "StatusEffect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "common-schema.json#/$defs/Identifier"
+        },
+        "duration_ticks": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "amplifier": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "chance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    }
+  },
+  "patternProperties": {
+    "^x-": {
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "integer",
+        "boolean",
+        "null"
+      ]
+    },
+    "^_debug$": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

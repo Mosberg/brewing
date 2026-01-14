@@ -1,0 +1,9 @@
+{
+  "id": "rum",
+  "display_name": "Rum",
+  "abv_range_pct": [
+    35,
+    55
+  ],
+  "base_method": "distillation"
+}
