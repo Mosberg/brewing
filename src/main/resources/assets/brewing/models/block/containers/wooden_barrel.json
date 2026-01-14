@@ -212,5 +212,10 @@
         "down": { "uv": [4.5, 5.5, 5, 8.5], "texture": "#missing" }
       }
     }
-  ]
+  ],
+
+  "textures": {
+    "missing": "minecraft:block/oak_planks",
+    "particle": "minecraft:block/oak_planks"
+  }
 }

@@ -1,6 +1,40 @@
 {
   "itemGroup.brewing": "Brewing",
 
+  "item.brewing.ingredients.apple": "Apple",
+  "item.brewing.ingredients.anise": "Anise",
+  "item.brewing.ingredients.barley": "Barley",
+  "item.brewing.ingredients.charcoal": "Charcoal",
+  "item.brewing.ingredients.corn": "Corn",
+  "item.brewing.ingredients.fennel": "Fennel",
+  "item.brewing.ingredients.grape": "Grape",
+  "item.brewing.ingredients.honey": "Honey",
+  "item.brewing.ingredients.hops": "Hops",
+  "item.brewing.ingredients.juniper": "Juniper",
+  "item.brewing.ingredients.molasses": "Molasses",
+  "item.brewing.ingredients.oak_chips": "Oak Chips",
+  "item.brewing.ingredients.rye": "Rye",
+  "item.brewing.ingredients.sugarcane": "Sugarcane",
+  "item.brewing.ingredients.water": "Water",
+  "item.brewing.ingredients.wheat": "Wheat",
+  "item.brewing.ingredients.wormwood": "Wormwood",
+  "item.brewing.ingredients.yeast": "Yeast",
+
+  "item.brewing.beverages.absinthe.basic_absinthe": "Absinthe",
+  "item.brewing.beverages.ale.basic_ale": "Basic Ale",
+  "item.brewing.beverages.beer.basic_beer": "Beer",
+  "item.brewing.beverages.brandy.basic_brandy": "Brandy",
+  "item.brewing.beverages.cider.basic_cider": "Cider",
+  "item.brewing.beverages.gin.basic_gin": "Gin",
+  "item.brewing.beverages.lager.basic_lager": "Lager",
+  "item.brewing.beverages.mead.basic_mead": "Mead",
+  "item.brewing.beverages.rum.basic_rum": "Rum",
+  "item.brewing.beverages.stout.basic_stout": "Stout",
+  "item.brewing.beverages.vodka.basic_vodka": "Vodka",
+  "item.brewing.beverages.whisky.basic_aged_whisky": "Aged Whisky",
+  "item.brewing.beverages.whisky.basic_raw_whisky": "Raw Whisky",
+  "item.brewing.beverages.wine.basic_wine": "Wine",
+
   "item.brewing.containers.glass_bottle": "Glass Bottle",
   "item.brewing.containers.glass_flask": "Glass Flask",
   "item.brewing.containers.metal_can": "Metal Can",
@@ -21,7 +55,7 @@
   "item.brewing.equipment.carbonation_rig": "Carbonation Rig",
   "item.brewing.equipment.charcoal_filter": "Charcoal Filter",
   "item.brewing.equipment.metal_distillery": "Metal Distillery",
-  "item.brewing.equipment.wooden_distillery": "Wooden Distillery",
+  "item.brewing.equipment.wooden_fermenter": "Wooden Fermenter",
 
   "block.brewing.equipment.aging_barrel": "Aging Barrel",
   "block.brewing.equipment.botanical_basket": "Botanical Basket",
@@ -29,5 +63,5 @@
   "block.brewing.equipment.carbonation_rig": "Carbonation Rig",
   "block.brewing.equipment.charcoal_filter": "Charcoal Filter",
   "block.brewing.equipment.metal_distillery": "Metal Distillery",
-  "block.brewing.equipment.wooden_distillery": "Wooden Distillery"
+  "block.brewing.equipment.wooden_fermenter": "Wooden Fermenter"
 }

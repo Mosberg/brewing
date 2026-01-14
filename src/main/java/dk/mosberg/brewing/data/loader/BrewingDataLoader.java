@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 import com.google.gson.JsonParseException;
 import dk.mosberg.brewing.Brewing;
 import dk.mosberg.brewing.data.AlcoholTypeDefinition;
@@ -22,25 +23,25 @@ public final class BrewingDataLoader {
 
     @SuppressWarnings("null")
     public static BrewingData loadAll(ResourceManager resourceManager) {
-        Map<String, AlcoholTypeDefinition> alcoholTypes =
-                loadFolder(resourceManager, "alcohol_types", AlcoholTypeDefinition.class);
-        Map<String, IngredientDefinition> ingredients =
-                loadFolder(resourceManager, "ingredients", IngredientDefinition.class);
-        Map<String, MethodDefinition> methods =
-                loadFolder(resourceManager, "methods", MethodDefinition.class);
-        Map<String, EquipmentDefinition> equipment =
-                loadFolder(resourceManager, "equipment", EquipmentDefinition.class);
-        Map<String, ContainerDefinition> containers =
-                loadFolder(resourceManager, "containers", ContainerDefinition.class);
-        Map<String, BeverageDefinition> beverages =
-                loadFolder(resourceManager, "beverages", BeverageDefinition.class);
+        Map<String, AlcoholTypeDefinition> alcoholTypes = loadFolder(resourceManager,
+                "alcohol_types", AlcoholTypeDefinition.class, AlcoholTypeDefinition::id);
+        Map<String, IngredientDefinition> ingredients = loadFolder(resourceManager, "ingredients",
+                IngredientDefinition.class, IngredientDefinition::id);
+        Map<String, MethodDefinition> methods = loadFolder(resourceManager, "methods",
+                MethodDefinition.class, MethodDefinition::id);
+        Map<String, EquipmentDefinition> equipment = loadFolder(resourceManager, "equipment",
+                EquipmentDefinition.class, EquipmentDefinition::id);
+        Map<String, ContainerDefinition> containers = loadFolder(resourceManager, "containers",
+                ContainerDefinition.class, ContainerDefinition::id);
+        Map<String, BeverageDefinition> beverages = loadFolder(resourceManager, "beverages",
+                BeverageDefinition.class, BeverageDefinition::id);
 
         return new BrewingData(alcoholTypes, ingredients, methods, equipment, containers,
                 beverages);
     }
 
     private static <T> Map<String, T> loadFolder(ResourceManager resourceManager, String folder,
-            Class<T> clazz) {
+            Class<T> clazz, Function<T, String> keyFn) {
         Map<String, T> out = new HashMap<>();
         var resources = resourceManager.findResources(folder,
                 id -> Brewing.MOD_ID.equals(id.getNamespace()) && id.getPath().endsWith(".json"));
@@ -55,7 +56,22 @@ public final class BrewingDataLoader {
                 if (parsed == null) {
                     throw new JsonParseException("Parsed null for " + id);
                 }
-                out.put(id.toString(), parsed);
+
+                String key = keyFn.apply(parsed);
+                if (key == null || key.isBlank()) {
+                    Brewing.LOGGER.error(
+                            "Parsed brewing data {} ({}) but it had no usable id() for keying", id,
+                            clazz.getSimpleName());
+                    continue;
+                }
+
+                if (out.containsKey(key)) {
+                    Brewing.LOGGER.warn(
+                            "Duplicate brewing data id '{}' while loading {} ({}); last one wins",
+                            key, folder, id);
+                }
+
+                out.put(key, parsed);
             } catch (IOException | RuntimeException e) {
                 Brewing.LOGGER.error("Failed to parse brewing data {} ({})", id,
                         clazz.getSimpleName(), e);

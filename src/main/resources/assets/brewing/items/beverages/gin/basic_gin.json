@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "brewing:item/beverages/gin/gin"
+    "model": "brewing:item/beverages/gin/basic_gin"
   }
 }

@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "brewing:item/beverages/cider/apple_cider"
+    "model": "brewing:item/beverages/cider/basic_cider"
   }
 }

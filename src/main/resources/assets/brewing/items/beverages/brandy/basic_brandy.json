@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "brewing:item/beverages/brandy/brandy"
+    "model": "brewing:item/beverages/brandy/basic_brandy"
   }
 }
