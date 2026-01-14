@@ -54,8 +54,8 @@ public final class ContainerBlock extends BlockWithEntity {
     }
 
     @Override
-    public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer,
-            ItemStack itemStack) {
+    public void onPlaced(World world, BlockPos pos, BlockState state,
+            @SuppressWarnings("null") LivingEntity placer, ItemStack itemStack) {
         super.onPlaced(world, pos, state, placer, itemStack);
 
         if (world.isClient()) {
