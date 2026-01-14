@@ -113,15 +113,13 @@ public final class ModBlocks {
 
         Registry.register(Registries.BLOCK, blockId, block);
 
-        RegistryKey<Item> itemKey = RegistryKey.of(RegistryKeys.ITEM, blockId);
-        BlockItem blockItem = new BlockItem(block, new Item.Settings().registryKey(itemKey));
-
         if (Registries.ITEM.containsId(blockId)) {
             Brewing.LOGGER.warn("Skipping duplicate block item id {}", blockId);
-            return;
+        } else {
+            RegistryKey<Item> itemKey = RegistryKey.of(RegistryKeys.ITEM, blockId);
+            BlockItem blockItem = new BlockItem(block, new Item.Settings().registryKey(itemKey));
+            Registry.register(Registries.ITEM, blockId, blockItem);
         }
-
-        Registry.register(Registries.ITEM, blockId, blockItem);
 
         if (block instanceof ContainerBlock) {
             CONTAINERS.add(block);

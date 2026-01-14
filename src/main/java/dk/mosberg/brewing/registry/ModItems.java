@@ -44,11 +44,12 @@ public final class ModItems {
                 }
 
                 RegistryKey<Item> key = RegistryKey.of(RegistryKeys.ITEM, id);
-                Item item = new Item(new Item.Settings().registryKey(key));
                 if (Registries.ITEM.containsId(id)) {
                     Brewing.LOGGER.debug("Skipping already-registered item id {}", id);
                     continue;
                 }
+
+                Item item = new Item(new Item.Settings().registryKey(key));
 
                 Registry.register(Registries.ITEM, id, item);
                 registered++;

@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "brewing:item/beverages/beer/beer"
+    "model": "brewing:item/beverages/rum/basic_rum"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "brewing:item/equipment/metal_distillery"
+    "all": "brewing:item/equipment/copper_distillery"
   }
 }

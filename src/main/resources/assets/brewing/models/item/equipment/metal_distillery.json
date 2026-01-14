@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "brewing:item/equipment/metal_distillery"
+    "layer0": "brewing:item/equipment/copper_distillery"
   }
 }
