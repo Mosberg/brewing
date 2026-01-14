@@ -1,7 +1,23 @@
 {
   "variants": {
-    "": {
-      "model": "brewing:block/equipment/aging_barrel"
+    "facing=north": {
+      "model": "brewing:block/equipment/aging_barrel",
+      "uvlock": true
+    },
+    "facing=east": {
+      "model": "brewing:block/equipment/aging_barrel",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=south": {
+      "model": "brewing:block/equipment/aging_barrel",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west": {
+      "model": "brewing:block/equipment/aging_barrel",
+      "y": 270,
+      "uvlock": true
     }
   }
 }

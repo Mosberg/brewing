@@ -1,7 +1,23 @@
 {
   "variants": {
-    "": {
-      "model": "brewing:block/equipment/carbonation_rig"
+    "facing=north": {
+      "model": "brewing:block/equipment/carbonation_rig",
+      "uvlock": true
+    },
+    "facing=east": {
+      "model": "brewing:block/equipment/carbonation_rig",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=south": {
+      "model": "brewing:block/equipment/carbonation_rig",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west": {
+      "model": "brewing:block/equipment/carbonation_rig",
+      "y": 270,
+      "uvlock": true
     }
   }
 }

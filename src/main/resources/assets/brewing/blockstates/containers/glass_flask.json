@@ -1,7 +1,23 @@
 {
   "variants": {
-    "": {
-      "model": "brewing:block/containers/glass_flask"
+    "facing=north": {
+      "model": "brewing:block/containers/glass_flask",
+      "uvlock": true
+    },
+    "facing=east": {
+      "model": "brewing:block/containers/glass_flask",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=south": {
+      "model": "brewing:block/containers/glass_flask",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west": {
+      "model": "brewing:block/containers/glass_flask",
+      "y": 270,
+      "uvlock": true
     }
   }
 }

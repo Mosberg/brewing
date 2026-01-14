@@ -1,7 +1,23 @@
 {
   "variants": {
-    "": {
-      "model": "brewing:block/equipment/charcoal_filter"
+    "facing=north": {
+      "model": "brewing:block/equipment/charcoal_filter",
+      "uvlock": true
+    },
+    "facing=east": {
+      "model": "brewing:block/equipment/charcoal_filter",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=south": {
+      "model": "brewing:block/equipment/charcoal_filter",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west": {
+      "model": "brewing:block/equipment/charcoal_filter",
+      "y": 270,
+      "uvlock": true
     }
   }
 }

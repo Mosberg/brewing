@@ -1,7 +1,23 @@
 {
   "variants": {
-    "": {
-      "model": "brewing:block/equipment/botanical_basket"
+    "facing=north": {
+      "model": "brewing:block/equipment/botanical_basket",
+      "uvlock": true
+    },
+    "facing=east": {
+      "model": "brewing:block/equipment/botanical_basket",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=south": {
+      "model": "brewing:block/equipment/botanical_basket",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west": {
+      "model": "brewing:block/equipment/botanical_basket",
+      "y": 270,
+      "uvlock": true
     }
   }
 }

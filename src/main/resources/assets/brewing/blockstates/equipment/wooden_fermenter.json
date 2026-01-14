@@ -1,7 +1,23 @@
 {
   "variants": {
-    "": {
-      "model": "brewing:block/equipment/wooden_fermenter"
+    "facing=north": {
+      "model": "brewing:block/equipment/wooden_fermenter",
+      "uvlock": true
+    },
+    "facing=east": {
+      "model": "brewing:block/equipment/wooden_fermenter",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=south": {
+      "model": "brewing:block/equipment/wooden_fermenter",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west": {
+      "model": "brewing:block/equipment/wooden_fermenter",
+      "y": 270,
+      "uvlock": true
     }
   }
 }

@@ -1,7 +1,23 @@
 {
   "variants": {
-    "": {
-      "model": "brewing:block/equipment/metal_distillery"
+    "facing=north": {
+      "model": "brewing:block/equipment/metal_distillery",
+      "uvlock": true
+    },
+    "facing=east": {
+      "model": "brewing:block/equipment/metal_distillery",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=south": {
+      "model": "brewing:block/equipment/metal_distillery",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west": {
+      "model": "brewing:block/equipment/metal_distillery",
+      "y": 270,
+      "uvlock": true
     }
   }
 }

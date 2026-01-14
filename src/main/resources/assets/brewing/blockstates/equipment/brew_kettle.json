@@ -1,7 +1,23 @@
 {
   "variants": {
-    "": {
-      "model": "brewing:block/equipment/brew_kettle"
+    "facing=north": {
+      "model": "brewing:block/equipment/brew_kettle",
+      "uvlock": true
+    },
+    "facing=east": {
+      "model": "brewing:block/equipment/brew_kettle",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=south": {
+      "model": "brewing:block/equipment/brew_kettle",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west": {
+      "model": "brewing:block/equipment/brew_kettle",
+      "y": 270,
+      "uvlock": true
     }
   }
 }
