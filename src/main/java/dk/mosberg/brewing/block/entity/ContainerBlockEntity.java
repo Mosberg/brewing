@@ -34,15 +34,22 @@ public final class ContainerBlockEntity extends BlockEntity {
         this.syncToClient = syncToClient;
     }
 
+    public void setPayload(ContainerPayload payload, boolean markForSync) {
+        this.payload = payload == null ? ContainerPayload.empty() : payload;
+        this.markDirty();
+        if (markForSync) {
+            this.markForUpdate();
+        }
+    }
+
+    public void setPayload(ContainerPayload payload) {
+        setPayload(payload, syncToClient);
+    }
+
     public void applyPayloadFromItem(ItemStack stack, ContainerDefinition def,
             boolean markForSync) {
-        ContainerStateStorage.readPayloadFromItem(stack, def).ifPresent(p -> {
-            this.payload = p;
-            this.markDirty();
-            if (markForSync) {
-                this.markForUpdate();
-            }
-        });
+        ContainerStateStorage.readPayloadFromItem(stack, def)
+                .ifPresent(p -> setPayload(p, markForSync));
     }
 
     public void writePayloadToItem(ItemStack stack, ContainerDefinition def) {

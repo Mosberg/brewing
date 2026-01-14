@@ -6,6 +6,8 @@ import dk.mosberg.brewing.block.entity.ContainerBlockEntity;
 import dk.mosberg.brewing.data.BrewingDataManager;
 import dk.mosberg.brewing.data.ContainerDefinition;
 import dk.mosberg.brewing.registry.ModBlocks;
+import dk.mosberg.brewing.state.ContainerPayload;
+import dk.mosberg.brewing.state.ContainerStateStorage;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -68,6 +70,10 @@ public final class ContainerBlock extends BlockWithEntity {
             return;
         }
 
+        if (!ContainerStateStorage.supportsBlockStorage(def)) {
+            return;
+        }
+
         BlockEntity be = world.getBlockEntity(pos);
         if (!(be instanceof ContainerBlockEntity containerBe)) {
             return;
@@ -76,8 +82,13 @@ public final class ContainerBlock extends BlockWithEntity {
         boolean syncToClient = def.stateStorage().placedBlock().syncToClient();
         containerBe.setSyncToClient(syncToClient);
 
-        // Minimal conversion behavior for now: copy item payload into BE if present.
-        containerBe.applyPayloadFromItem(itemStack, def, syncToClient);
+        if (ContainerStateStorage.shouldCopyItemToBlock(def)) {
+            ContainerPayload payload = ContainerStateStorage.readPayloadFromItem(itemStack, def)
+                    .map(p -> ContainerStateStorage.applyDefaults(def, p))
+                    .orElse(ContainerStateStorage.defaultPayload(def));
+
+            containerBe.setPayload(payload);
+        }
     }
 
     @Override
@@ -94,6 +105,10 @@ public final class ContainerBlock extends BlockWithEntity {
             return drops;
         }
 
+        if (!ContainerStateStorage.supportsBlockStorage(def)) {
+            return drops;
+        }
+
         if (!placed.dropsKeepContents()) {
             return drops;
         }
@@ -103,9 +118,17 @@ public final class ContainerBlock extends BlockWithEntity {
             return drops;
         }
 
+        if (!ContainerStateStorage.shouldCopyBlockToItem(def)) {
+            return drops;
+        }
+
+        ContainerPayload payload = ContainerStateStorage.applyDefaults(def, containerBe.payload());
+
         for (ItemStack stack : drops) {
             if (stack != null && stack.isOf(this.asItem())) {
-                containerBe.writePayloadToItem(stack, def);
+                if (payload != null && !payload.isEmpty()) {
+                    ContainerStateStorage.writePayloadToItem(stack, def, payload);
+                }
                 break;
             }
         }

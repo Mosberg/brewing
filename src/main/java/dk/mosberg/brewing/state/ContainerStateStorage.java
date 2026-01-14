@@ -10,7 +10,118 @@ import net.minecraft.nbt.NbtCompound;
 public final class ContainerStateStorage {
     private static final String BREWING_PAYLOAD_KEY = "payload";
 
+    private static final String MODE_ITEM = "item";
+    private static final String MODE_BLOCK = "block";
+    private static final String MODE_BOTH = "both";
+
+    private static final String MERGE_STRATEGY_REPLACE = "replace";
+    private static final String MERGE_STRATEGY_MERGE = "merge";
+
     private ContainerStateStorage() {}
+
+    public static boolean supportsBlockStorage(ContainerDefinition container) {
+        ContainerDefinition.StateStorage ss = container == null ? null : container.stateStorage();
+        if (ss == null || ss.mode() == null) {
+            return false;
+        }
+
+        return MODE_BLOCK.equals(ss.mode()) || MODE_BOTH.equals(ss.mode());
+    }
+
+    public static boolean shouldCopyItemToBlock(ContainerDefinition container) {
+        ContainerDefinition.StateStorage ss = container == null ? null : container.stateStorage();
+        if (ss == null || ss.conversion() == null) {
+            return false;
+        }
+
+        String action = ss.conversion().onPlace();
+        if (action == null) {
+            return false;
+        }
+
+        String normalized = action.trim().toLowerCase();
+        return normalized.contains("copy")
+                && (normalized.contains("block") || normalized.contains("block_entity"));
+    }
+
+    public static boolean shouldCopyBlockToItem(ContainerDefinition container) {
+        ContainerDefinition.StateStorage ss = container == null ? null : container.stateStorage();
+        if (ss == null || ss.conversion() == null) {
+            return false;
+        }
+
+        String action = ss.conversion().onBreak();
+        if (action == null) {
+            return false;
+        }
+
+        String normalized = action.trim().toLowerCase();
+        return normalized.contains("copy") && normalized.contains("item");
+    }
+
+    public static ContainerPayload defaultPayload(ContainerDefinition container) {
+        if (container == null || container.stateStorage() == null
+                || container.stateStorage().defaults() == null
+                || container.stateStorage().defaults().payload() == null) {
+            return ContainerPayload.empty();
+        }
+
+        ContainerDefinition.StateStorage.Payload p = container.stateStorage().defaults().payload();
+        return new ContainerPayload(p.contentId(), p.amountMb(), p.quality(), p.temperature(),
+                p.pressure(), p.sealed(), p.createdTime());
+    }
+
+    public static ContainerPayload applyDefaults(ContainerDefinition container,
+            ContainerPayload payload) {
+        ContainerPayload defaults = defaultPayload(container);
+
+        ContainerDefinition.StateStorage ss = container == null ? null : container.stateStorage();
+        String mergeStrategy = (ss == null || ss.conversion() == null) ? MERGE_STRATEGY_REPLACE
+                : ss.conversion().mergeStrategy();
+
+        ContainerPayload effective = payload == null ? ContainerPayload.empty() : payload;
+
+        if (MERGE_STRATEGY_MERGE.equals(mergeStrategy)) {
+            return merge(defaults, effective);
+        }
+
+        if (effective.isEmpty()) {
+            return defaults;
+        }
+
+        return effective;
+    }
+
+    private static ContainerPayload merge(ContainerPayload base, ContainerPayload override) {
+        if (base == null) {
+            return override == null ? ContainerPayload.empty() : override;
+        }
+        if (override == null || override.isEmpty()) {
+            return base;
+        }
+
+        boolean hasMeaningfulOverrides =
+                (override.contentId() != null && !override.contentId().isBlank())
+                        || override.amountMb() != 0 || override.quality() != 0.0
+                        || (override.temperature() != null && !override.temperature().isBlank())
+                        || override.pressure() != 0.0 || override.createdTime() != 0L;
+
+        String contentId = (override.contentId() != null && !override.contentId().isBlank())
+                ? override.contentId()
+                : base.contentId();
+        int amountMb = (override.amountMb() != 0) ? override.amountMb() : base.amountMb();
+        double quality = (override.quality() != 0.0) ? override.quality() : base.quality();
+        String temperature = (override.temperature() != null && !override.temperature().isBlank())
+                ? override.temperature()
+                : base.temperature();
+        double pressure = (override.pressure() != 0.0) ? override.pressure() : base.pressure();
+        boolean sealed = hasMeaningfulOverrides ? override.sealed() : base.sealed();
+        long createdTime =
+                (override.createdTime() != 0L) ? override.createdTime() : base.createdTime();
+
+        return new ContainerPayload(contentId, amountMb, quality, temperature, pressure, sealed,
+                createdTime);
+    }
 
     public static Optional<ContainerPayload> readPayloadFromItem(ItemStack stack,
             ContainerDefinition container) {

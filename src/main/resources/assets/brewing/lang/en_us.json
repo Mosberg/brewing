@@ -42,6 +42,36 @@
   "item.brewing.containers.pressurized_metal_keg": "Pressurized Metal Keg",
   "item.brewing.containers.wooden_barrel": "Wooden Barrel",
 
+  "brewing.container.glass_bottle.lore": "A simple bottle for beverages.",
+  "brewing.container.glass_bottle.tooltip": "Can hold up to 750 mB.",
+  "brewing.container.glass_bottle.flavor": "Simple, practical, and timeless.",
+  "brewing.container.glass_bottle.instructions": "Fill, seal, and drink.",
+
+  "item.brewing.glass_flask.desc": "A small flask for spirits and liqueurs.",
+  "item.brewing.glass_flask.tooltip": "Can hold up to 250 mB.",
+  "item.brewing.glass_flask.flavor_text": "Perfect for a careful sip.",
+  "item.brewing.glass_flask.crafting_instructions": "Craft with glass and a stopper.",
+
+  "item.brewing.metal_can.desc": "A sealed can for carbonated drinks.",
+  "item.brewing.metal_can.tooltip": "Can hold up to 330 mB.",
+  "item.brewing.metal_can.flavor_text": "Fresh and fizzy.",
+  "item.brewing.metal_can.crafting_instructions": "Stamp and seal.",
+
+  "item.brewing.metal_keg.lore": "A sturdy keg for serving and storage.",
+  "item.brewing.metal_keg.tooltip": "Can hold up to 30000 mB.",
+  "item.brewing.metal_keg.flavor": "Built for a proper pour.",
+  "item.brewing.metal_keg.crafting": "Reinforce with metal bands.",
+
+  "item.brewing.pressurized_metal_keg.lore": "A pressure-rated keg with advanced controls.",
+  "item.brewing.pressurized_metal_keg.tooltip": "Can hold up to 30000 mB.",
+  "item.brewing.pressurized_metal_keg.flavor": "Dialed in, perfectly served.",
+  "item.brewing.pressurized_metal_keg.crafting": "Requires precision components.",
+
+  "item.brewing.wooden_barrel.desc": "A large barrel for aging and storage.",
+  "item.brewing.wooden_barrel.tooltip": "Can hold up to 50000 mB.",
+  "item.brewing.wooden_barrel.flavor_text": "Time does the work.",
+  "item.brewing.wooden_barrel.crafting_instructions": "Assemble staves and hoops.",
+
   "block.brewing.containers.glass_bottle": "Glass Bottle",
   "block.brewing.containers.glass_flask": "Glass Flask",
   "block.brewing.containers.metal_can": "Metal Can",
@@ -63,5 +93,18 @@
   "block.brewing.equipment.carbonation_rig": "Carbonation Rig",
   "block.brewing.equipment.charcoal_filter": "Charcoal Filter",
   "block.brewing.equipment.metal_distillery": "Metal Distillery",
-  "block.brewing.equipment.wooden_fermenter": "Wooden Fermenter"
+  "block.brewing.equipment.wooden_fermenter": "Wooden Fermenter",
+
+  "block.brewing.equipment.aging_barrel.tooltip": "A specialized barrel for controlled aging.",
+  "block.brewing.equipment.metal_distillery.tooltip": "Distills spirits with precision control.",
+  "block.brewing.equipment.wooden_fermenter.tooltip": "Ferments ingredients into beverages.",
+
+  "brewing.equipment.brew_kettle.name": "Brew Kettle",
+  "brewing.equipment.brew_kettle.tooltip": "Used for mashing and heating.",
+  "brewing.equipment.carbonation_rig.name": "Carbonation Rig",
+  "brewing.equipment.carbonation_rig.tooltip": "Adds carbonation under pressure.",
+  "brewing.equipment.botanical_basket.name": "Botanical Basket",
+  "brewing.equipment.botanical_basket.tooltip": "Infuses botanicals and spices.",
+  "brewing.equipment.charcoal_filter.name": "Charcoal Filter",
+  "brewing.equipment.charcoal_filter.tooltip": "Filters impurities for a cleaner taste."
 }
