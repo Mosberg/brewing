@@ -33,7 +33,7 @@
 3. Drop the Brewing `.jar` into your `mods/` folder.
 4. Launch the game.
 
-> This mod is data-driven. If you are a modpack author, you can customize/extend content via JSON (see docs + schemas).
+> This mod is data-driven. If you are a modpack author, you can customize/extend content via JSON (schemas).
 
 ---
 
@@ -287,7 +287,7 @@ brewing/
 
 Contributions are welcome. Suggested expectations:
 
-- Schema-first changes (update schema + docs when needed).
+- Schema-first changes (update schemas).
 - Backwards-compatible schema evolution where possible.
 
 ---
